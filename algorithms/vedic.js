@@ -7,10 +7,9 @@ class Vedic {
     this.scale = Range.scale(
      Dictionary
     .scale(scale)
-    .map(Transpose.transpose(`${key}2`)), 
-    [`${key}2`, `${key}6`]),
-    this.table = [],
-    this.populate(modulus)  
+    .map(Transpose.transpose(`${key}2`)), [`${key}2`, `${key}6`]);
+    this.table = [];
+    this.populate(modulus);
 
   }
   populate(modulus){
