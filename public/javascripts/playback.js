@@ -55,20 +55,22 @@ class Player {
             "D6": "/sound/63.wav",
             "D#6": "/sound/64.wav"
 
-        }, this.playSequence(data, {loop: false})).toMaster();
+        }, 
+        this.playSequence(this.sequence, {loop: false})).toMaster();
     }
-    playSequence(data, params){
-        let sequence = new Tone.Sequence(
+    playSequence(sequence, params){
+        setTimeout(() => {
+            let seq = new Tone.Sequence(
                 (time, note) => {
                     this.sampler.triggerAttackRelease(note);
                 }, 
-                [...data], 
+                [...this.sequence], 
                 '8n'
             );
-
-        sequence.loop = params.loop;
-        sequence.start();
-        Tone.Transport.start();
+            seq.loop = params.loop;
+            seq.start();
+            Tone.Transport.start();
+        }, 250);
     }
     stop(){
         Tone.Transport.cancel();
