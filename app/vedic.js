@@ -30,7 +30,8 @@ class VedicSquare {
   }
 }
 
-console.log(new VedicSquare(12, 'major', 'C'));
+const vedic = new VedicSquare(12, 'major', 'C');
+module.exports = vedic;
 
 /*
 Notes:

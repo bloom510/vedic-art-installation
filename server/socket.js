@@ -1,4 +1,7 @@
 
+//make sure to require any app business logic
+const vedic = require('../app/vedic');
+
 class Socket {
     constructor(app, PORT){
         this.server = require('http').createServer(app); 
@@ -13,9 +16,9 @@ class Socket {
     }
     activateListeners(){
         this.io.on('connection', (socket) => { 
+            //add custom events here!
             socket.on('ready', (data) => {
-                console.log(data)
-                socket.emit('ready', 'hello from the server side!')
+                socket.emit('ready', vedic)
             })
         })
     }
