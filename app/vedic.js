@@ -9,6 +9,7 @@ class VedicSquare {
     .map(Transpose.transpose(`${key}2`));
     this.table = [];
     this.populate(modulus)  
+
   }
   populate(modulus){
     let cell;
@@ -21,7 +22,7 @@ class VedicSquare {
         } else {
           cell = ((1 + (i*j) - 1) % modulus)
           this.table[i - 1].push(
-            this.scale[(cell - 1) % this.scale.length]
+          this.scale[(cell - 1) % this.scale.length]
           );
         }
       }
@@ -29,7 +30,7 @@ class VedicSquare {
   }
 }
 
-new VedicSquare(9, 'major', 'C')
+console.log(new VedicSquare(12, 'major', 'C'));
 
 /*
 Notes:
