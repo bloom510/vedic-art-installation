@@ -2,7 +2,7 @@ const Range = require("tonal-range")
 const Transpose = require("tonal-transpose")
 const Dictionary = require("tonal-dictionary");
 
-class VedicSquare {
+class Vedic {
   constructor(modulus, scale, key){
     this.scale = Range.scale(
      Dictionary
@@ -32,7 +32,7 @@ class VedicSquare {
   }
 }
 
-const vedic = new VedicSquare(12, 'major', 'C');
+const vedic = new Vedic(12, 'major', 'C');
 module.exports = vedic;
 
 /*
