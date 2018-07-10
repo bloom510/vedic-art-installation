@@ -1,16 +1,5 @@
 class Player {
-    //1. Copy sound assets from old Vedic repo
-    //2. Add the following to the HBS template:
-    /*
-        Libraries:
-        1. Tone.js
-        2. jQuery (tentative)
-
-        Local:
-        1. canvas.js
-        2. playback.js
-    */
-    constructor(){
+    constructor(data){
         this.sampler = new Tone.Sampler({
             "C2": "/sound/13c.wav",
             "C#2": "/sound/14.wav",
@@ -65,18 +54,20 @@ class Player {
             "D6": "/sound/63.wav",
             "D#6": "/sound/64.wav"
 
-        }, function() {
-            let row_number = $('.listen').attr('row_id');
-            let seq = new Tone.Sequence(function(time, note) {
+        }, () => {
+            //Play this row
+            let row_number = 5;
+            //Define a new Sequence
+            let sequence = new Tone.Sequence((time, note) => {
                 sampler.triggerAttackRelease(note);
             }, [...data.note_square[`${row}`]], subdivision);
-            //sampler will repitch the closest sample
-            seq.loop = false;
-            seq.start();
+            
+            ///params
+            sequence.loop = false;
+
+            //initialize loop and start
+            sequence.start();
             Tone.Transport.start();
-            $('.listen').on('click', function() {
-                Tone.Transport.cancel();
-            });
         }).toMaster();
     }
 }

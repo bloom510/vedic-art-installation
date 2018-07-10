@@ -4,9 +4,11 @@ const Dictionary = require("tonal-dictionary");
 
 class VedicSquare {
   constructor(modulus, scale, key){
-    this.scale = Dictionary
+    this.scale = Range.scale(
+     Dictionary
     .scale(scale)
-    .map(Transpose.transpose(`${key}2`));
+    .map(Transpose.transpose(`${key}2`)), 
+    [`${key}2`, `${key}6`]);
     this.table = [];
     this.populate(modulus)  
 
