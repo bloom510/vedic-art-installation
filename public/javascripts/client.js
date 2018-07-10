@@ -11,7 +11,7 @@ class Client {
             this.socket.emit('ready', 'hello from the client side!')
             this.socket.on('ready', (data) => {
                 // console.log(data.table[0])
-                let player = new Player(data.table[0])
+                let player = new Player(data.table[4])
             });
         });
     }
