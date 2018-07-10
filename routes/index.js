@@ -6,9 +6,11 @@ router.get('/', (req, res, next) => {
   res.render('index', { 
     title: 'Express', scripts: 
       [
+        //Business logic
         {script: '../javascripts/playback.js'},
-         //Business logic
-         {script: '../javascripts/canvas.js'},
+        {script: '../javascripts/table.js'},
+        {script: '../javascripts/canvas.js'},
+        
         //Socket.io 
         {script: '/socket.io/socket.io.js'},
         {script: '../javascripts/client.js'},
