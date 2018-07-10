@@ -70,7 +70,7 @@ class Player {
             seq.loop = params.loop;
             seq.start();
             Tone.Transport.start();
-        }, 250);
+        }, 750);
     }
     stop(){
         Tone.Transport.cancel();
