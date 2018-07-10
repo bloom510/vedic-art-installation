@@ -8,8 +8,8 @@ class VedicSquare {
      Dictionary
     .scale(scale)
     .map(Transpose.transpose(`${key}2`)), 
-    [`${key}2`, `${key}6`]);
-    this.table = [];
+    [`${key}2`, `${key}6`]),
+    this.table = [],
     this.populate(modulus)  
 
   }
