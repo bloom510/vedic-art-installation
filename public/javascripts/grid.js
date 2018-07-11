@@ -1,4 +1,4 @@
-class Table {
+class Grid {
     constructor(width, height, modulus, context){
         this.modulus =  modulus;
         this.windowWidth = width;

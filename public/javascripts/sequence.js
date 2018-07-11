@@ -1,4 +1,4 @@
-class Player {
+class Sequence {
     constructor(data){
         this.sequence = data;
         this.sampler = new Tone.Sampler({

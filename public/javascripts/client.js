@@ -12,9 +12,9 @@ class Client {
             this.socket.emit('ready', 'hello from the client side!')
             this.socket.on('ready', (data) => {
                 //Hard coded musical sequence
-                let player = new Player(data.table[4])
+                let player = new Sequence(data.table[4])
                 //Generate a table
-                new Table(
+                new Grid(
                     this.canvas.width, 
                     this.canvas.height, 
                     data.modulus, 

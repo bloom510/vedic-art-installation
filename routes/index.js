@@ -8,10 +8,9 @@ router.get('/', (req, res, next) => {
       [
         //Business logic
         {script: '../javascripts/vector.js'},
-        {script: '../javascripts/playback.js'},
-        {script: '../javascripts/table.js'},
+        {script: '../javascripts/sequence.js'},
+        {script: '../javascripts/grid.js'},
         {script: '../javascripts/canvas.js'},
-        
         //Socket.io 
         {script: '/socket.io/socket.io.js'},
         {script: '../javascripts/client.js'},
@@ -19,8 +18,6 @@ router.get('/', (req, res, next) => {
         {script: 'https://cdnjs.cloudflare.com/ajax/libs/tone/13.2.0/Tone.js'}
         //jQuery
         // {script: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'},
-        
-       
       ]
   }); 
 });
