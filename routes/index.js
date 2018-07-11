@@ -7,6 +7,7 @@ router.get('/', (req, res, next) => {
     title: 'Express', scripts: 
       [
         //Business logic
+        {script: '../javascripts/vector.js'},
         {script: '../javascripts/playback.js'},
         {script: '../javascripts/table.js'},
         {script: '../javascripts/canvas.js'},
