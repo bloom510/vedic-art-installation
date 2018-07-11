@@ -1,7 +1,8 @@
 
 class Client {
-    constructor(){
+    constructor(canvas){
         this.socket = io.connect(window.location.host);
+        this.canvas = canvas;
         this.activateListeners()
     }
 
@@ -10,8 +11,15 @@ class Client {
         this.socket.on('connect', () => { //when a server connection is established
             this.socket.emit('ready', 'hello from the client side!')
             this.socket.on('ready', (data) => {
-                // console.log(data.table[0])
+                //Hard coded musical sequence
                 let player = new Player(data.table[4])
+                //Generate a table
+                new Table(
+                    this.canvas.width, 
+                    this.canvas.height, 
+                    data.modulus, 
+                    this.canvas.context
+                );
             });
         });
     }
@@ -19,5 +27,15 @@ class Client {
 }
 
 window.addEventListener('load', () => {
-    const client = new Client();
+    
+    const canvas = new Canvas(window.innerWidth / 1.25, window.innerHeight / 1.25);
+    canvas.init({
+            strokeStyle: 'black',
+            fillStyle: 'white',
+            lineCap: 'round',
+            lineWidth: '0.5'
+        }); 
+    
+    const client = new Client(canvas); 
+    
 })

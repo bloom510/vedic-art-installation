@@ -11,7 +11,7 @@ class Vedic {
     );
     this.table = [];
     this.populate(modulus);
-
+    this.modulus = modulus;
   }
   populate(modulus){
     let cell;

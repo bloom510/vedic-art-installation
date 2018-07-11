@@ -1,24 +1,25 @@
 class Table {
-    constructor(modulus, context){
-        this.width = modulus;
-        this.height = modulus;
-        this.windowWidth = window.innerWidth;
-        this.windowHeight = window.innerHeight;
+    constructor(width, height, modulus, context){
+        this.modulus =  modulus;
+        this.windowWidth = width;
+        this.windowHeight = height;
         this.context = context;
         this.cells = [];
         this.drawGrid();
         
     }
-    drawCell(){
+    drawCell(x, y){
         // console.log(this.context)
-        this.context.strokeRect(20,20,150,100);
+        this.context.strokeRect(
+            x, y, 
+            this.windowWidth / this.modulus, 
+            this.windowHeight / this.modulus
+        );
     }
     drawGrid(){
-        this.drawCell()
-        // for(let x = 0; x < this.windowWidth; x++){
-        //     for(let y = 0; y < this.windowHeight; y++){
-        //         //boxes[x].draw()
-        //     }
-        // }
+        for(let x = 0; x < this.windowWidth; x += this.windowWidth / this.modulus){
+            for(let y = 0; y < this.windowHeight; y += this.windowHeight / this.modulus)
+            this.drawCell(x,y)
+        }
     }
 }

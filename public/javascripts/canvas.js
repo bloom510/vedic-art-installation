@@ -25,7 +25,7 @@ class Canvas {
 
         //Fill background and track mouse
         this.context.fillRect(0, 0, this.width, this.height);
-        new Table(12, this.context)
+        
     }
 
     //Cartesian distance formula
@@ -34,17 +34,3 @@ class Canvas {
     }
 
 }
-
-//onLoad, instantiate a new Canvas and initialize it.
-window.addEventListener('load', () => {
-    const canvas = new Canvas(window.innerWidth, window.innerHeight);
-    canvas.init({
-            strokeStyle: 'black',
-            fillStyle: 'white',
-            lineCap: 'round',
-            lineWidth: '1'
-        }); 
-    
-});
-    
-          
