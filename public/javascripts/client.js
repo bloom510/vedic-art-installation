@@ -18,7 +18,8 @@ class Client {
                     this.canvas.width, 
                     this.canvas.height, 
                     data.modulus, 
-                    this.canvas.context
+                    this.canvas.context,
+                    'rgba(0,0,0,0)'
                 );
             });
         });
@@ -28,7 +29,7 @@ class Client {
 
 window.addEventListener('load', () => {
     
-    const canvas = new Canvas(window.innerWidth / 1.25, window.innerHeight / 1.25);
+    const canvas = new Canvas(window.innerWidth, window.innerHeight);
     canvas.init({
             strokeStyle: 'black',
             fillStyle: 'white',
