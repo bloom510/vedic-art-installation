@@ -16,7 +16,7 @@ class Table {
         let centerY = y + (this.windowHeight / this.modulus) / 2;
 
         this.context.beginPath();
-        this.context.arc(centerX,centerY,5,0,2*Math.PI);
+        this.context.arc(centerX,centerY,3,0,2*Math.PI);
      
 
         this.context.strokeRect(
