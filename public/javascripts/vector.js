@@ -6,6 +6,7 @@ class Vector {
         this.setColor(color)
         this.draw()
     }
+ 
     setColor(color){
         this.context.fillStyle = color;
     }

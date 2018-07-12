@@ -6,10 +6,25 @@ class Grid {
         this.context = context;
         this.context.strokeStyle = strokeStyle;
         this.grid = [];
+
         this.makeVectorGrid();
         this.drawVectorGrid();
-        this.colorDot()
-
+        this.colorDot();
+    }
+    findNeighbors(){
+       for(let i = 0; i < this.grid.length; i++){
+            if(i === 0){
+                //it has a right neighbor
+                // neighbor = this.grid[i + 1]
+            }
+            if(i === this.grid.length - 1){
+                //it has a left neighbor
+                //neighbor = neighbor this.grid[i - 1]
+            }
+            //it has both right and left neighbors
+            //neighborLeft = this.grid[i - 1]
+            //neighborRight = this.grid[i + 1]
+       }
     }
     makeVectorGrid(){
         let cell;
@@ -31,11 +46,8 @@ class Grid {
        
     }
     colorDot(){
-        console.log(this.grid[0])
         this.grid[0].setColor('red');
-        this.grid[0].draw()
-        // this.drawVectorGrid()
-        
+        this.grid[0].draw();
     }
 
 }
