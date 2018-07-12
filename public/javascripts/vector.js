@@ -1,7 +1,8 @@
 class Vector {
-    constructor(x, y, windowWidth, windowHeight, modulus, context, color){
+    constructor(x, y, windowWidth, windowHeight, modulus, context, color, dr){
         this.x = x + (windowWidth / modulus) / 2;
         this.y = y + (windowHeight / modulus) / 2;
+        this.dr = dr;
         this.context = context;
         this.neighbors = {};
         this.setColor(color)

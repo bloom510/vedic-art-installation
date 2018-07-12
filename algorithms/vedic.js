@@ -9,6 +9,7 @@ class Vedic {
     .scale(scale)
     .map(Transpose.transpose(`${key}2`)), [`${key}2`, `${key}6`]
     );
+    this.note_table = [];
     this.table = [];
     this.populate(modulus);
     this.modulus = modulus;
@@ -16,23 +17,26 @@ class Vedic {
   populate(modulus){
     let cell;
     for(let i = 1; i <= modulus; i++){
-      this.table[i - 1] = [];
+      this.note_table[i - 1] = [];
       for(let j = 1; j <= modulus; j++){
         if((1 + (i*j) - 1) % modulus === 0) {
             cell = this.scale[(modulus - 1) % this.scale.length];
-            this.table[i - 1].push(cell);
+            this.note_table[i - 1].push(cell);
+            this.table.push(modulus)
         } else {
           cell = ((1 + (i*j) - 1) % modulus)
-          this.table[i - 1].push(
+          this.note_table[i - 1].push(
           this.scale[(cell - 1) % this.scale.length]
           );
+          this.table.push(cell)
         }
       }
     }
+    console.log(this.table)
   }
 }
 
-const vedic = new Vedic(12, 'major', 'C');
+const vedic = new Vedic(9, 'major', 'C');
 module.exports = vedic;
 
 /*
