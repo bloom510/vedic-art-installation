@@ -12,14 +12,14 @@ class Client {
             this.socket.emit('ready', 'hello from the client side!')
             this.socket.on('ready', (data) => {
                 //Hard coded musical sequence
-                let player = new Sequence(data.table[4])
+                // let player = new Sequence(data.table[4])
                 //Generate a table
                 new Grid(
                     this.canvas.width, 
                     this.canvas.height, 
                     data.modulus, 
                     this.canvas.context,
-                    'rgba(0,0,0,0)'
+                    'purple'
                 );
             });
         });
