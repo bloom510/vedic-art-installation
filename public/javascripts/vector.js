@@ -1,16 +1,18 @@
 class Vector {
-    constructor(x, y, windowWidth, windowHeight, modulus, context, fillStyle){
-        this.x = x;
-        this.y = y;
-        this.cx = x + (windowWidth / modulus) / 2;
-        this.cy = y + (windowHeight / modulus) / 2;
+    constructor(x, y, windowWidth, windowHeight, modulus, context, color){
+        this.x = x + (windowWidth / modulus) / 2;
+        this.y = y + (windowHeight / modulus) / 2;
         this.context = context;
-        this.context.fillStyle = fillStyle;
-        this.draw(windowWidth, windowHeight)
+        this.setColor(color)
+        this.draw()
     }
-    draw(windowWidth, windowHeight){
+    setColor(color){
+        this.context.fillStyle = color;
+    }
+    draw(){
+        this.context.moveTo(this.x, this.y)
         this.context.beginPath();
-        this.context.arc(this.cx,this.cy,2,0,2*Math.PI);
+        this.context.arc(this.x,this.y,2,0,2*Math.PI);
         this.context.fill();
         this.context.closePath();
     }
