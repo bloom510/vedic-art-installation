@@ -42,8 +42,6 @@ class Grid {
             let right = vector.neighbors.right;
             right.setColor('purple')    
         } 
-            
-        
     }
 
     makeVectorGrid(){
@@ -62,7 +60,6 @@ class Grid {
                         '#107f5d',
                         this.vTable[index]
                     );
-                
                 vector.draw()
                 this.grid.push(vector)
                 index++;

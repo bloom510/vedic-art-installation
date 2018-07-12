@@ -13,7 +13,7 @@ class Client {
             this.socket.on('ready', (data) => {
                 
                 //Hard coded musical sequence
-                // let player = new Sequence(data.table[4])
+                let seq = new Sequence(data.table[4])
                 //Generate a table
                 const grid = new Grid(
                     this.canvas.width, 
