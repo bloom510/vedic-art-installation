@@ -11,7 +11,7 @@ class Client {
         this.socket.on('connect', () => { //when a server connection is established
             this.socket.emit('ready', 'hello from the client side!')
             this.socket.on('ready', (data) => {
-                new Sequence(data.note_table[4])
+                new Sequence(data.note_table[5])
                 //Generate a table
                 const grid = new Grid(
                     this.canvas.width, 
@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
     const canvas = new Canvas(window.innerWidth, window.innerHeight);
     canvas.init({
             strokeStyle: 'black',
-            fillStyle: 'white',
+            fillStyle: 'black',
             lineCap: 'round',
             lineWidth: '0.5'
         }); 

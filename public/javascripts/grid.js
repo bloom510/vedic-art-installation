@@ -11,7 +11,7 @@ class Grid {
         this.makeVectorGrid();
         this.drawVectorGrid();
         this.findNeighbors();
-        setTimeout(() => this.highlightNumber(3), 1000)
+        setTimeout(() => this.highlightNumber(1), 1000)
         // this.grid[27].setColor('red')
         
     }
@@ -29,7 +29,8 @@ class Grid {
                         this.windowWidth, this.windowHeight, 
                         this.modulus, this.context, 
                         '#107f5d',
-                        this.num_table[index]
+                        this.num_table[index],
+                        5
                     );
                     vector.draw()
                     this.grid.push(vector)
@@ -80,6 +81,7 @@ class Grid {
     highlightNumber(number){
         for(let i = 0; i < this.grid.length; i++){
             if(Number(this.grid[i].dr) === Number(number)){
+                // this.grid[i].radius = 25;
                 this.grid[i].setColor('red')
             }
         }
