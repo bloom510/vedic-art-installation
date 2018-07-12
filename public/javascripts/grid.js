@@ -11,6 +11,7 @@ class Grid {
         this.drawVectorGrid();
         this.findNeighbors();
     }
+
     findNeighbors(){
         //TODO: upper and lower neighbors
        for(let i = 0; i < this.grid.length; i++){
@@ -25,11 +26,16 @@ class Grid {
        }
        this.drawNeighbor(this.grid[6]);
     }
+
+    highlightMultiple(number){
+        //set a specific number to a certain color across the grid
+    }
+
     drawNeighbor(vector){
      
         if(vector.neighbors.left) {
-        let left = vector.neighbors.left;
-        left.setColor('red');
+            let left = vector.neighbors.left;
+            left.setColor('red');
         }
         if(vector.neighbors.right){
             let right = vector.neighbors.right;
@@ -38,11 +44,13 @@ class Grid {
         
         vector.setColor('blue')
     }
+
     makeVectorGrid(){
         let cell;
         let width = this.windowWidth / this.modulus;
         let height =  this.windowHeight / this.modulus;
         let y = 0;
+
         const plotVectors = () => {
             for(let x = 0; x <= this.windowWidth; x += this.windowWidth / this.modulus){               
                 let vector = new Vector(x, y, this.windowWidth, this.windowHeight, this.modulus, this.context, '#107f5d')
@@ -55,10 +63,9 @@ class Grid {
             plotVectors(y);
             y += this.windowHeight / this.modulus;
         }
-        
- 
        
     }
+
    drawVectorGrid(){
         for(let i = 0; i < this.grid.length; i++){
             this.grid[i].draw()      
