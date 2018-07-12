@@ -1,5 +1,6 @@
 class Sequence {
     constructor(data){
+        console.log(data)
         this.sequence = data;
         this.sampler = new Tone.Sampler({
             "C2": "/sound/13c.wav",
@@ -57,6 +58,8 @@ class Sequence {
 
         }, 
         this.playSequence(this.sequence, {loop: false})).toMaster();
+
+        
     }
     playSequence(sequence, params){
         setTimeout(() => {

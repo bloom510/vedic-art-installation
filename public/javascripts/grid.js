@@ -12,7 +12,7 @@ class Grid {
         this.drawVectorGrid();
         this.findNeighbors();
         
-        console.log(this.grid)
+        // console.log(this.grid)
     }
 
     findNeighbors(){
@@ -27,7 +27,7 @@ class Grid {
                 this.grid[i].neighbors.right = this.grid[i + 1];
             }
        }
-       console.log(this.grid)
+    //    console.log(this.grid)
        this.drawNeighbor(this.grid[0]);
     }
 

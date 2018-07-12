@@ -12,8 +12,8 @@ class Client {
             this.socket.emit('ready', 'hello from the client side!')
             this.socket.on('ready', (data) => {
                 
-                //Hard coded musical sequence
-                let seq = new Sequence(data.table[4])
+                new Sequence(data.table)
+             
                 //Generate a table
                 const grid = new Grid(
                     this.canvas.width, 
