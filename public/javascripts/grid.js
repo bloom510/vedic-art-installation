@@ -11,16 +11,14 @@ class Grid {
         this.makeVectorGrid();
         this.drawVectorGrid();
         this.findNeighbors();
-        setTimeout(() => this.highlightNumber(1), 1000)
+        // this.highlightNumber(1)
         // this.grid[27].setColor('red')
         
     }
     makeVectorGrid(){
         let width = this.windowWidth / this.modulus;
         let height =  this.windowHeight / this.modulus;
-        // let y = 0;
         let index = 0;
-
         const plotVectors = () => {
             for(let x = 0; x <= this.windowWidth; x += (this.windowWidth / this.modulus)){               
                 for(let y = 0; y < this.windowHeight; y += (this.windowHeight / this.modulus)){
@@ -37,7 +35,7 @@ class Grid {
                     index++;
                 } 
             }
-            console.log(this.grid)
+            // console.log(this.grid)
         }
             plotVectors();
       

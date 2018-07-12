@@ -1,7 +1,9 @@
 class Sequence {
     constructor(data){
-        console.log(data)
-        this.sequence = data;
+        // console.log(data, 'seq')
+        this.data = data;
+        this.sequence = data.note_table[5];
+        this.num_table = data.num_table;
         this.sampler = new Tone.Sampler({
             "C2": "/sound/13c.wav",
             "C#2": "/sound/14.wav",
@@ -62,18 +64,27 @@ class Sequence {
         
     }
     playSequence(sequence, params){
-        setTimeout(() => {
-            let seq = new Tone.Sequence(
-                (time, note) => {
+        let cell = 0;
+        let row = 5;
+        let vector;
+        let seq = new Tone.Sequence(
+            //callback
+            (time, note) => {
+                    vector = this.num_table[row][cell];
+                    //We'll need to import grid into sequence
+                    // console.log(grid.grid[vector])
                     this.sampler.triggerAttackRelease(note);
-                }, 
-                [...this.sequence], 
-                '8n'
+                    cell++;
+            }, 
+            //notes
+            [...this.sequence],
+            //subdivision 
+            '8n'
             );
             seq.loop = params.loop;
             seq.start();
             Tone.Transport.start();
-        }, 750);
+    
     }
     stop(){
         Tone.Transport.cancel();

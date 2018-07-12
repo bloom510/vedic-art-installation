@@ -10,32 +10,48 @@ class Vedic {
     .map(Transpose.transpose(`${key}2`)), [`${key}2`, `${key}6`]
     );
     this.note_table = [];
-    this.table = [];
+    this.num_table = [];
     this.populate(modulus);
     this.modulus = modulus;
   }
   populate(modulus){
-    let cell;
+    let number;
+    let note;
+    let tmp = [];
     for(let i = 1; i <= modulus; i++){
       this.note_table[i - 1] = [];
       for(let j = 1; j <= modulus; j++){
+    /*TODO: for numbers, subdivide nested arrays by the modulus*/
+    //1. Push numbers into a temporary array 
+    //2. If number is the last member of a given row,
+    //   push tmp to num_table and reset tmp to empty array
         if((1 + (i*j) - 1) % modulus === 0) {
-            cell = this.scale[(modulus - 1) % this.scale.length];
-            this.note_table[i - 1].push(cell);
-            this.table.push(modulus)
+            note = this.scale[(modulus - 1) % this.scale.length];
+            this.note_table[i - 1].push(note);
+         
+            tmp.push(modulus)
+            if(tmp.length === modulus){
+              this.num_table.push(tmp)
+              tmp = [];
+            }
+          
+          
+           
         } else {
-          cell = ((1 + (i*j) - 1) % modulus)
+          number = ((1 + (i*j) - 1) % modulus)
           this.note_table[i - 1].push(
-          this.scale[(cell - 1) % this.scale.length]
+          this.scale[(number - 1) % this.scale.length]
           );
-          this.table.push(cell)
+          tmp.push(number)
         }
       }
     }
   }
 }
 
-const vedic = new Vedic(20, 'major', 'C');
+const vedic = new Vedic(9, 'major', 'C');
+console.log(vedic.num_table)
+
 module.exports = vedic;
 
 /*
