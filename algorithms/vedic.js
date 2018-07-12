@@ -32,11 +32,10 @@ class Vedic {
         }
       }
     }
-    console.log(this.table)
   }
 }
 
-const vedic = new Vedic(12, 'major', 'C');
+const vedic = new Vedic(9, 'major', 'C');
 module.exports = vedic;
 
 /*

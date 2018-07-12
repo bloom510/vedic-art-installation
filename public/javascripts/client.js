@@ -12,7 +12,7 @@ class Client {
             this.socket.emit('ready', 'hello from the client side!')
             this.socket.on('ready', (data) => {
                 
-                new Sequence(data.note_table[4])
+                // new Sequence(data.note_table[4])
              
                 //Generate a table
                 const grid = new Grid(

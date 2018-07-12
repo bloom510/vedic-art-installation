@@ -11,9 +11,59 @@ class Grid {
         this.makeVectorGrid();
         this.drawVectorGrid();
         this.findNeighbors();
+        this.highlightNumber(3)
         
-        // console.log(this.grid)
     }
+    makeVectorGrid(){
+        let width = this.windowWidth / this.modulus;
+        let height =  this.windowHeight / this.modulus;
+        // let y = 0;
+        let index = 0;
+
+        const plotVectors = () => {
+            for(let x = 0; x <= this.windowWidth; x += (this.windowWidth / this.modulus)){               
+                for(let y = 0; y < this.windowHeight; y += (this.windowHeight / this.modulus)){
+                    let vector = new Vector(
+                        x, y, 
+                        this.windowWidth, this.windowHeight, 
+                        this.modulus, this.context, 
+                        '#107f5d',
+                        this.vTable[index]
+                    );
+                vector.draw()
+                this.grid.push(vector)
+                index++;
+                } 
+            }
+            console.log(this.grid)
+            // for(let x = 0; x <= this.windowWidth; x += this.windowWidth / this.modulus){               
+            //     let vector = new Vector(
+            //             x, y, 
+            //             this.windowWidth, this.windowHeight, 
+            //             this.modulus, this.context, 
+            //             '#107f5d',
+            //             this.vTable[index]
+            //         );
+            //     vector.draw()
+            //     this.grid.push(vector)
+            //     index++;
+            // }
+        }
+
+        // while(y < this.windowHeight){
+            plotVectors();
+            // y += this.windowHeight / this.modulus;
+        // }
+       
+    }
+
+   drawVectorGrid(){
+        for(let i = 0; i < this.grid.length; i++){
+            this.grid[i].draw()      
+        }
+       
+    }
+
 
     findNeighbors(){
         //TODO: upper and lower neighbors
@@ -27,10 +77,8 @@ class Grid {
                 this.grid[i].neighbors.right = this.grid[i + 1];
             }
        }
-    //    console.log(this.grid)
-       this.drawNeighbor(this.grid[0]);
+    //    this.drawNeighbor(this.grid[0]);
     }
-
 
     drawNeighbor(vector){
         vector.setColor('red')
@@ -44,40 +92,12 @@ class Grid {
         } 
     }
 
-    makeVectorGrid(){
-        let cell;
-        let width = this.windowWidth / this.modulus;
-        let height =  this.windowHeight / this.modulus;
-        let y = 0;
-        let index = 0;
-
-        const plotVectors = () => {
-            for(let x = 0; x <= this.windowWidth; x += this.windowWidth / this.modulus){               
-                let vector = new Vector(
-                        x, y, 
-                        this.windowWidth, this.windowHeight, 
-                        this.modulus, this.context, 
-                        '#107f5d',
-                        this.vTable[index]
-                    );
-                vector.draw()
-                this.grid.push(vector)
-                index++;
+    highlightNumber(number){
+        for(let i = 0; i < this.grid.length; i++){
+            if(this.grid[i].dr === number){
+                this.grid[i].setColor('red')
             }
         }
-
-        while(y < this.windowHeight){
-            plotVectors(y);
-            y += this.windowHeight / this.modulus;
-        }
-       
-    }
-
-   drawVectorGrid(){
-        for(let i = 0; i < this.grid.length; i++){
-            this.grid[i].draw()      
-        }
-       
     }
 
 }
