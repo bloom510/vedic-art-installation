@@ -10,8 +10,9 @@ class Grid {
 
         this.makeVectorGrid();
         this.drawVectorGrid();
-        // this.findNeighbors();
-        this.highlightMultiple(2)
+        this.findNeighbors();
+        
+        console.log(this.grid)
     }
 
     findNeighbors(){
@@ -26,30 +27,23 @@ class Grid {
                 this.grid[i].neighbors.right = this.grid[i + 1];
             }
        }
-       this.drawNeighbor(this.grid[6]);
+       console.log(this.grid)
+       this.drawNeighbor(this.grid[0]);
     }
 
-    highlightMultiple(number){
-        if(!number - 1 === 0) number = number - 1;
-        //iterate through the array
-        for(let i = 0; i < this.grid.length; i++){
-            // console.log(this.grid[i])
-            // if(i % number === 0){
-            //     this.grid[i].setColor('orange')
-            // }
-        }
-    }
 
     drawNeighbor(vector){
+        vector.setColor('red')
         if(vector.neighbors.left) {
             let left = vector.neighbors.left;
-            left.setColor('red');
+            left.setColor('purple');
         }
         if(vector.neighbors.right){
             let right = vector.neighbors.right;
-            right.setColor('red')    
-        }
-        vector.setColor('blue')
+            right.setColor('purple')    
+        } 
+            
+        
     }
 
     makeVectorGrid(){
@@ -57,35 +51,28 @@ class Grid {
         let width = this.windowWidth / this.modulus;
         let height =  this.windowHeight / this.modulus;
         let y = 0;
+        let index = 0;
 
         const plotVectors = () => {
             for(let x = 0; x <= this.windowWidth; x += this.windowWidth / this.modulus){               
-                for(let v = 0; v < this.vTable.length; v++){
-                    let vector = new Vector(
+                let vector = new Vector(
                         x, y, 
                         this.windowWidth, this.windowHeight, 
                         this.modulus, this.context, 
                         '#107f5d',
-                        this.vTable[v]
+                        this.vTable[index]
                     );
-                    vector.draw()
-                    this.grid.push(vector)
-                 
-                }
-
+                
+                vector.draw()
+                this.grid.push(vector)
+                index++;
             }
-            
-            
-            
-            // console.log(this.grid)
         }
 
         while(y < this.windowHeight){
             plotVectors(y);
             y += this.windowHeight / this.modulus;
         }
-
-
        
     }
 
