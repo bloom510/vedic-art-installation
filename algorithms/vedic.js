@@ -35,7 +35,7 @@ class Vedic {
   }
 }
 
-const vedic = new Vedic(9, 'major', 'C');
+const vedic = new Vedic(27, 'major', 'C');
 module.exports = vedic;
 
 /*

@@ -1,17 +1,18 @@
 class Grid {
-    constructor(width, height, modulus, context, color, vTable){
+    constructor(width, height, modulus, context, color, num_table){
         this.modulus =  modulus;
         this.windowWidth = width;
         this.windowHeight = height;
         this.context = context;
         this.context.strokeStyle = color;
         this.grid = [];
-        this.vTable = vTable;
+        this.num_table = num_table;
 
         this.makeVectorGrid();
         this.drawVectorGrid();
         this.findNeighbors();
-        this.highlightNumber(3)
+        setTimeout(() => this.highlightNumber(3), 1000)
+        // this.grid[27].setColor('red')
         
     }
     makeVectorGrid(){
@@ -28,33 +29,17 @@ class Grid {
                         this.windowWidth, this.windowHeight, 
                         this.modulus, this.context, 
                         '#107f5d',
-                        this.vTable[index]
+                        this.num_table[index]
                     );
-                vector.draw()
-                this.grid.push(vector)
-                index++;
+                    vector.draw()
+                    this.grid.push(vector)
+                    index++;
                 } 
             }
             console.log(this.grid)
-            // for(let x = 0; x <= this.windowWidth; x += this.windowWidth / this.modulus){               
-            //     let vector = new Vector(
-            //             x, y, 
-            //             this.windowWidth, this.windowHeight, 
-            //             this.modulus, this.context, 
-            //             '#107f5d',
-            //             this.vTable[index]
-            //         );
-            //     vector.draw()
-            //     this.grid.push(vector)
-            //     index++;
-            // }
         }
-
-        // while(y < this.windowHeight){
             plotVectors();
-            // y += this.windowHeight / this.modulus;
-        // }
-       
+      
     }
 
    drawVectorGrid(){
@@ -94,7 +79,7 @@ class Grid {
 
     highlightNumber(number){
         for(let i = 0; i < this.grid.length; i++){
-            if(this.grid[i].dr === number){
+            if(Number(this.grid[i].dr) === Number(number)){
                 this.grid[i].setColor('red')
             }
         }
