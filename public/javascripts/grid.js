@@ -38,7 +38,7 @@ class Grid {
                         this.modulus, this.context, 
                         '#107f5d',
                         this.num_table[i][j],
-                        5
+                        1
                     );
                     this.grid.push(vector)
                 }
@@ -46,8 +46,10 @@ class Grid {
         }
    
         const plotVectors = () => {
-            for(let x = 10; x <= this.windowWidth; x += (this.windowWidth / this.modulus)){               
-                for(let y = 15; y < this.windowHeight; y += (this.windowHeight / this.modulus)){
+            let stepX = (this.windowWidth / this.modulus);
+            let stepY = (this.windowHeight / this.modulus);
+            for(let x = 10; x <= this.windowWidth; x += stepX){               
+                for(let y = 15; y <= this.windowHeight; y += stepY){
                     if(index <= this.grid.length - 1){
                         this.grid[index].x = x;
                         this.grid[index].y = y;
