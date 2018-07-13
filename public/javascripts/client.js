@@ -22,7 +22,7 @@ class Client {
                     'purple',
                     data.num_table
                 );
-                new Sequence(data, grid)
+                // new Sequence(data, grid)
             });
         });
     }

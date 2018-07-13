@@ -38,7 +38,7 @@ class Grid {
                         this.modulus, this.context, 
                         '#107f5d',
                         this.num_table[i][j],
-                        1
+                        0.7
                     );
                     this.grid.push(vector)
                 }
