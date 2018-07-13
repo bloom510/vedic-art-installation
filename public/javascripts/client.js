@@ -11,7 +11,7 @@ class Client {
         this.socket.on('connect', () => { //when a server connection is established
             this.socket.emit('ready', 'hello from the client side!')
             this.socket.on('ready', (data) => {
-                new Sequence(data)
+                
                 console.log(data)
                 //Generate a table
                 const grid = new Grid(
@@ -22,6 +22,7 @@ class Client {
                     'purple',
                     data.num_table
                 );
+                new Sequence(data, grid)
             });
         });
     }

@@ -1,15 +1,18 @@
 class Vector {
     constructor(x, y, width,height, modulus, context, color, dr, radius){
-        this.x = x + (width / modulus) / 2;
-        this.y = y + (height / modulus) / 2;
+        this.x = (x) => x + (width / modulus) / 2;
+        this.y = (y) => y + (height / modulus) / 2;
         this.dr = dr;
         this.radius = radius;
         this.context = context;
         this.neighbors = {};
         this.setColor(color)
         this.draw()
+        
     }
- 
+    extract(array){
+        console.log(array)
+    }
     setColor(color){
         this.context.fillStyle = color;
         this.draw();

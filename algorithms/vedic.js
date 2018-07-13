@@ -34,9 +34,6 @@ class Vedic {
               this.num_table.push(tmp)
               tmp = [];
             }
-          
-          
-           
         } else {
           number = ((1 + (i*j) - 1) % modulus)
           this.note_table[i - 1].push(
@@ -49,7 +46,7 @@ class Vedic {
   }
 }
 
-const vedic = new Vedic(9, 'major', 'C');
+const vedic = new Vedic(27, 'major', 'C');
 console.log(vedic.num_table)
 
 module.exports = vedic;

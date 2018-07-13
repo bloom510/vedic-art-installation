@@ -1,7 +1,8 @@
 class Sequence {
-    constructor(data){
+    constructor(data, grid){
         // console.log(data, 'seq')
         this.data = data;
+        this.grid = grid;
         this.sequence = data.note_table[5];
         this.num_table = data.num_table;
         this.sampler = new Tone.Sampler({
@@ -70,11 +71,9 @@ class Sequence {
         let seq = new Tone.Sequence(
             //callback
             (time, note) => {
-                    vector = this.num_table[row][cell];
-                    //We'll need to import grid into sequence
-                    // console.log(grid.grid[vector])
-                    this.sampler.triggerAttackRelease(note);
-                    cell++;
+                vector = this.num_table[row][cell];
+                this.sampler.triggerAttackRelease(note);
+                cell++;
             }, 
             //notes
             [...this.sequence],
