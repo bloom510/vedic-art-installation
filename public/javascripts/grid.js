@@ -10,9 +10,9 @@ class Grid {
 
         this.makeVectorGrid();
         //Draws the entire grid
-        this.drawVectorGrid();
+        // this.drawVectorGrid();
         //Highlights a specific number
-        this.highlightNumber(1)
+        this.highlightNumber(15)
         //Finds neighbors if needed
         // this.findNeighbors();
         //Draws neighbors 
@@ -46,7 +46,7 @@ class Grid {
         const plotVectors = () => {
             for(let x = 10; x <= this.windowWidth; x += (this.windowWidth / this.modulus)){               
                 for(let y = 15; y < this.windowHeight; y += (this.windowHeight / this.modulus)){
-                    if(vecIndex <= this.grid.length - 1){
+                    if(index <= this.grid.length - 1){
                         this.grid[index].x = x;
                         this.grid[index].y = y;
                         index++;
