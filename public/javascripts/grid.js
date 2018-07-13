@@ -12,7 +12,9 @@ class Grid {
         //Draws the entire grid
         // this.drawVectorGrid();
         //Highlights a specific number
-        this.highlightNumber(15)
+        // this.highlightNumber(this.grid[i].dr)
+        this.drawSequence();
+        
         //Finds neighbors if needed
         // this.findNeighbors();
         //Draws neighbors 
@@ -56,14 +58,27 @@ class Grid {
         }
         makeVectors();
         plotVectors();
-        console.log(this.grid);
+        // console.log(this.grid);
     }
 
    drawVectorGrid(){
         for(let i = 0; i < this.grid.length; i++){
             this.grid[i].draw()      
         }
-       
+    }
+    drawSequence(){
+        let index = 0;
+        const draw = () => {
+            this.highlightNumber(this.grid[index].dr);
+            requestAnimationFrame(() => {
+                if(index <= this.modulus - 1){
+                    draw();
+                    console.log(index)
+                    index++;
+                }
+            });
+        }
+        draw(); 
     }
 
 
@@ -95,9 +110,8 @@ class Grid {
     }
 
     highlightNumber(number){
+    //Store number as state in a hash? So we can deselect previous?
         for(let i = 0; i < this.grid.length; i++){
-            console.log(this.grid)
-            // console.log(number)
             if(this.grid[i].dr === number){
                 this.grid[i].setColor('orange')
             }
