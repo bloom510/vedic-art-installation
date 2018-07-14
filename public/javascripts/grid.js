@@ -38,7 +38,7 @@ class Grid {
                         this.modulus, this.context, 
                         '#107f5d',
                         this.num_table[i][j],
-                        0.7
+                        1
                     );
                     this.grid.push(vector)
                 }
@@ -115,7 +115,7 @@ class Grid {
     //Store number as state in a hash? So we can deselect previous?
         for(let i = 0; i < this.grid.length; i++){
             if(this.grid[i].dr === number){
-                this.grid[i].setColor('orange')
+                this.grid[i].setColor('white')
             }
         }
     }
