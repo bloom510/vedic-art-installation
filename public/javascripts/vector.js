@@ -7,12 +7,10 @@ class Vector {
         this.context = context;
         this.neighbors = {};
         this.setColor(color)
-        this.draw()
+        // this.draw()
         
     }
-    extract(array){
-        console.log(array)
-    }
+
     setColor(color){
         this.context.fillStyle = color;
         this.draw();
@@ -20,7 +18,7 @@ class Vector {
     draw(){
         this.context.moveTo(this.x, this.y)
         this.context.beginPath();
-        this.context.arc(this.x,this.y,this.radius,0,2*Math.PI);
+        this.context.arc(this.x,this.y,this.radius,1,2*Math.PI);
         this.context.fill();
         this.context.closePath();
     }

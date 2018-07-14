@@ -12,7 +12,8 @@ class Grid {
         //Draws the entire grid
         // this.drawVectorGrid();
         //Highlights a specific number
-        // this.highlightNumber(this.grid[i].dr)
+        // this.highlightNumber(this.grid[0].dr)
+     
         this.drawSequence();
         
         //Finds neighbors if needed
@@ -36,9 +37,9 @@ class Grid {
                         0, 0, 
                         this.windowWidth, this.windowHeight, 
                         this.modulus, this.context, 
-                        '#107f5d',
+                        'rgba(0,0,0,0)',
                         this.num_table[i][j],
-                        1
+                        0
                     );
                     this.grid.push(vector)
                 }
@@ -48,8 +49,8 @@ class Grid {
         const plotVectors = () => {
             let stepX = (this.windowWidth / this.modulus);
             let stepY = (this.windowHeight / this.modulus);
-            for(let x = 10; x <= this.windowWidth; x += stepX){               
-                for(let y = 15; y <= this.windowHeight; y += stepY){
+            for(let x = 0; x <= this.windowWidth; x += stepX){               
+                for(let y = 0; y <= this.windowHeight; y += stepY){
                     if(index <= this.grid.length - 1){
                         this.grid[index].x = x;
                         this.grid[index].y = y;
@@ -65,7 +66,7 @@ class Grid {
 
    drawVectorGrid(){
         for(let i = 0; i < this.grid.length; i++){
-            this.grid[i].draw()      
+            this.grid[i].setColor('white')      
         }
     }
     drawSequence(){
@@ -112,10 +113,18 @@ class Grid {
     }
 
     highlightNumber(number){
+        const PHI = (1 + Math.sqrt(5)) / 2;
     //Store number as state in a hash? So we can deselect previous?
         for(let i = 0; i < this.grid.length; i++){
             if(this.grid[i].dr === number){
-                this.grid[i].setColor('white')
+                if(i === 0){
+                    this.context.moveTo(this.grid[i].x, this.grid[i].y)
+                } else if(i % 1 === 0){
+                    this.context.lineTo(this.grid[i].x, this.grid[i].y)
+                    
+                }
+                this.context.stroke();
+                this.grid[i].setColor('rgba(0,0,0,0)')
             }
         }
     }

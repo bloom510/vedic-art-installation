@@ -19,7 +19,7 @@ class Client {
                     this.canvas.height, 
                     data.modulus, 
                     this.canvas.context,
-                    'purple',
+                    'white',
                     data.num_table
                 );
                 // new Sequence(data, grid)
