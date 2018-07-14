@@ -113,7 +113,6 @@ class Grid {
     }
 
     highlightNumber(number){
-        const PHI = (1 + Math.sqrt(5)) / 2;
     //Store number as state in a hash? So we can deselect previous?
         for(let i = 0; i < this.grid.length - this.modulus; i++){
             if(this.grid[i].dr === number){
