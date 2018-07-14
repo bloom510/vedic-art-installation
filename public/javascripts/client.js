@@ -15,8 +15,8 @@ class Client {
                 console.log(data)
                 //Generate a table
                 const grid = new Grid(
-                    this.canvas.width, 
-                    this.canvas.height, 
+                    this.canvas.width + data.modulus, 
+                    this.canvas.height + data.modulus, 
                     data.modulus, 
                     this.canvas.context,
                     'white',
