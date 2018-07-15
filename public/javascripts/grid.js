@@ -7,13 +7,29 @@ class Grid {
         this.context.strokeStyle = color;
         this.context.fillStyle = 'black';
         this.grid = [];
+        this.colors = {
+            chromatic: [
+                'rgba(60,49,125,1)', 
+                'rgba(104,47,129,1)', 
+                'rgba(146,29,65,1)', 
+                'rgba(223,35,42,1)', 
+                'rgba(226,67,41,1)', 
+                'rgba(236,136,38,1)', 
+                'rgba(240,176,32,1)', 
+                'rgba(238,231,57,1)', 
+                'rgba(193,214,55,1)', 
+                'rgba(89,164,72,1)', 
+                'rgba(54,75,153,1)', 
+                'rgba(35,127,90,1)', 
+            ]
+        }
         this.num_table = num_table;
 
         this.makeVectorGrid();
         //Draws the entire grid
         // this.drawVectorGrid();
         //Highlights a specific number
-        this.highlightNumber(this.grid[0].dr)
+        // this.highlightNumber(this.grid[0].dr)
      
         this.drawSequence(0);
 
@@ -41,7 +57,7 @@ class Grid {
                         this.modulus, this.context, 
                         'purple',
                         this.num_table[i][j],
-                        0.7
+                        1
                     );
                     this.grid.push(vector)
                 }
@@ -80,7 +96,7 @@ class Grid {
                 // index <= this.modulus - 1 whole square
                 //index % this.modulus === 0 single row
                 if(index === 0){
-                    this.context.fillStyle = 'white';
+                    this.context.fillStyle = 'ivory';
                     this.context.fillRect(0,0,this.windowWidth,this.windowHeight)
                     reverse = false;
                 }
@@ -97,7 +113,7 @@ class Grid {
                 }
            
                 if(index === this.modulus - 1){
-                    this.context.fillStyle = 'white';
+                    this.context.fillStyle = 'ivory';
                     this.context.fillRect(0,0,this.windowWidth,this.windowHeight)
                     reverse = true;
                 }   
@@ -136,17 +152,15 @@ class Grid {
     }
 
     highlightNumber(number){
+        let color;
     //Store number as state in a hash? So we can deselect previous?
         for(let i = 0; i < this.grid.length - this.modulus; i++){
             if(this.grid[i].dr === number){
-                if(i === 0){
-                    // this.context.moveTo(this.grid[i].x, this.grid[i].y)
-                } else if(i % 1 === 0){
-                    // this.context.lineTo(this.grid[i].x, this.grid[i].y)
-                    
-                }
-                // this.context.stroke();
-                this.grid[i].setColor('black')
+                color = (this.grid[i].dr % 12) - 1
+                // console.log(this.grid[i])
+                // this.grid[i].setColor('black')
+                
+                this.grid[i].setColor(this.colors.chromatic[color])
             }
         }
     }

@@ -12,7 +12,7 @@ class Client {
             this.socket.emit('ready', 'hello from the client side!')
             this.socket.on('ready', (data) => {
                 
-                console.log(data)
+                // console.log(data)
                 //Generate a table
                 const grid = new Grid(
                     this.canvas.width, 
