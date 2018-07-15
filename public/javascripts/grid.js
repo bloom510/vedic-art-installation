@@ -14,7 +14,8 @@ class Grid {
         //Highlights a specific number
         // this.highlightNumber(this.grid[0].dr)
      
-        this.drawSequence();
+        this.drawSequence(0);
+
         
         //Finds neighbors if needed
         // this.findNeighbors();
@@ -69,19 +70,23 @@ class Grid {
             this.grid[i].setColor('white')      
         }
     }
-    drawSequence(){
-        let index = 0;
+    drawSequence(index){
+        // this.context.strokeRect(0,0,this.windowWidth,this.windowHeight)
         const draw = () => {
             this.highlightNumber(this.grid[index].dr);
             requestAnimationFrame(() => {
+                // index <= this.modulus - 1 whole square
+                //index % this.modulus === 0 single row
                 if(index <= this.modulus - 1){
                     draw();
                     console.log(index)
                     index++;
+                    
                 }
             });
         }
-        draw(); 
+        draw();
+         
     }
 
 

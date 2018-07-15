@@ -19,7 +19,7 @@ class Client {
                     this.canvas.height, 
                     data.modulus, 
                     this.canvas.context,
-                    'white',
+                    'purple',
                     data.num_table
                 );
                 // new Sequence(data, grid)
@@ -35,7 +35,7 @@ window.addEventListener('load', () => {
             strokeStyle: 'black',
             fillStyle: 'black',
             lineCap: 'round',
-            lineWidth: '0.5'
+            lineWidth: '0.6'
         }); 
     
     const client = new Client(canvas); 

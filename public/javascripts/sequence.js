@@ -71,7 +71,6 @@ class Sequence {
         let seq = new Tone.Sequence(
             //callback
             (time, note) => {
-                vector = this.num_table[row][cell];
                 this.sampler.triggerAttackRelease(note);
                 cell++;
             }, 

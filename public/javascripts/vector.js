@@ -7,7 +7,7 @@ class Vector {
         this.context = context;
         this.neighbors = {};
         this.setColor(color)
-        // this.draw()
+        this.draw()
         
     }
 
