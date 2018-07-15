@@ -5,6 +5,7 @@ class Grid {
         this.windowHeight = height;
         this.context = context;
         this.context.strokeStyle = color;
+        this.context.fillStyle = 'black';
         this.grid = [];
         this.num_table = num_table;
 
@@ -12,7 +13,7 @@ class Grid {
         //Draws the entire grid
         // this.drawVectorGrid();
         //Highlights a specific number
-        // this.highlightNumber(this.grid[0].dr)
+        this.highlightNumber(this.grid[0].dr)
      
         this.drawSequence(0);
 
@@ -38,9 +39,9 @@ class Grid {
                         0, 0, 
                         this.windowWidth, this.windowHeight, 
                         this.modulus, this.context, 
-                        'rgba(0,0,0,0)',
+                        'purple',
                         this.num_table[i][j],
-                        0
+                        0.7
                     );
                     this.grid.push(vector)
                 }
@@ -67,22 +68,39 @@ class Grid {
 
    drawVectorGrid(){
         for(let i = 0; i < this.grid.length; i++){
-            this.grid[i].setColor('white')      
+            this.grid[i].setColor('purple')      
         }
     }
     drawSequence(index){
-        // this.context.strokeRect(0,0,this.windowWidth,this.windowHeight)
+        let initIndex = index;
+        let reverse = false;
         const draw = () => {
-            this.highlightNumber(this.grid[index].dr);
             requestAnimationFrame(() => {
+            this.highlightNumber(this.grid[index].dr);
                 // index <= this.modulus - 1 whole square
                 //index % this.modulus === 0 single row
-                if(index <= this.modulus - 1){
-                    draw();
-                    console.log(index)
-                    index++;
-                    
+                if(index === 0){
+                    this.context.fillStyle = 'white';
+                    this.context.fillRect(0,0,this.windowWidth,this.windowHeight)
+                    reverse = false;
                 }
+                if(!reverse){
+                    if(index < this.modulus - 1){
+                        draw();
+                        index++;
+                    } 
+                } 
+
+                if(reverse) {
+                    draw();
+                    index--;
+                }
+           
+                if(index === this.modulus - 1){
+                    this.context.fillStyle = 'white';
+                    this.context.fillRect(0,0,this.windowWidth,this.windowHeight)
+                    reverse = true;
+                }   
             });
         }
         draw();
@@ -122,13 +140,13 @@ class Grid {
         for(let i = 0; i < this.grid.length - this.modulus; i++){
             if(this.grid[i].dr === number){
                 if(i === 0){
-                    this.context.moveTo(this.grid[i].x, this.grid[i].y)
+                    // this.context.moveTo(this.grid[i].x, this.grid[i].y)
                 } else if(i % 1 === 0){
-                    this.context.lineTo(this.grid[i].x, this.grid[i].y)
+                    // this.context.lineTo(this.grid[i].x, this.grid[i].y)
                     
                 }
-                this.context.stroke();
-                this.grid[i].setColor('rgba(0,0,0,0)')
+                // this.context.stroke();
+                this.grid[i].setColor('black')
             }
         }
     }

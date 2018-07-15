@@ -33,7 +33,7 @@ window.addEventListener('load', () => {
     const canvas = new Canvas(window.innerWidth, window.innerHeight);
     canvas.init({
             strokeStyle: 'black',
-            fillStyle: 'black',
+            fillStyle: 'white',
             lineCap: 'round',
             lineWidth: '0.6'
         }); 
