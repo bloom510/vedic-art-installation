@@ -159,7 +159,6 @@ class Grid {
                 color = (this.grid[i].dr % 12) - 1
                 // console.log(this.grid[i])
                 // this.grid[i].setColor('black')
-                
                 this.grid[i].setColor(this.colors.chromatic[color])
             }
         }
