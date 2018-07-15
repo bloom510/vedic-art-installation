@@ -5,7 +5,7 @@ class Grid {
         this.windowHeight = height;
         this.context = context;
         this.context.strokeStyle = color;
-        this.context.fillStyle = 'black';
+        this.context.fillStyle = 'white';
         this.grid = [];
         this.colors = {
             chromatic: [
@@ -30,7 +30,6 @@ class Grid {
         // this.drawVectorGrid();
         //Highlights a specific number
         // this.highlightNumber(this.grid[0].dr)
-     
         this.drawSequence(0);
 
         
@@ -88,7 +87,6 @@ class Grid {
         }
     }
     drawSequence(index){
-        let initIndex = index;
         let reverse = false;
         const draw = () => {
             requestAnimationFrame(() => {
@@ -96,7 +94,7 @@ class Grid {
                 // index <= this.modulus - 1 whole square
                 //index % this.modulus === 0 single row
                 if(index === 0){
-                    this.context.fillStyle = 'ivory';
+                    this.context.fillStyle = 'white';
                     this.context.fillRect(0,0,this.windowWidth,this.windowHeight)
                     reverse = false;
                 }
@@ -113,7 +111,7 @@ class Grid {
                 }
            
                 if(index === this.modulus - 1){
-                    this.context.fillStyle = 'ivory';
+                    this.context.fillStyle = 'white';
                     this.context.fillRect(0,0,this.windowWidth,this.windowHeight)
                     reverse = true;
                 }   
@@ -156,9 +154,10 @@ class Grid {
     //Store number as state in a hash? So we can deselect previous?
         for(let i = 0; i < this.grid.length - this.modulus; i++){
             if(this.grid[i].dr === number){
-                color = (this.grid[i].dr % 12) - 1
-                // console.log(this.grid[i])
+                color = (this.grid[i].dr % 12) - 1;
                 // this.grid[i].setColor('black')
+                // this.grid[i].setColor('white')
+
                 this.grid[i].setColor(this.colors.chromatic[color])
             }
         }
