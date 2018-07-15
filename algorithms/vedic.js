@@ -46,7 +46,7 @@ class Vedic {
   }
 }
 
-const vedic = new Vedic(400, 'chromatic', 'C');
+const vedic = new Vedic(200, 'chromatic', 'C');
 console.log(vedic.num_table)
 
 module.exports = vedic;
