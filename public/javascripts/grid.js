@@ -1,6 +1,6 @@
 class Grid {
     constructor(width, height, modulus, context, color, num_table){
-        this.modulus =  modulus;
+        this.lacmodulus =  modulus;
         this.windowWidth = width;
         this.windowHeight = height;
         this.context = context;
@@ -56,7 +56,7 @@ class Grid {
                         this.modulus, this.context, 
                         'purple',
                         this.num_table[i][j],
-                        3
+                        0.5
                     );
                     this.grid.push(vector)
                 }
@@ -155,10 +155,10 @@ class Grid {
         for(let i = 0; i < this.grid.length - this.modulus; i++){
             if(this.grid[i].dr === number){
                 color = (this.grid[i].dr % 12) - 1;
-                // this.grid[i].setColor('black')
+                this.grid[i].setColor('black')
                 // this.grid[i].setColor('white')
 
-                this.grid[i].setColor(this.colors.chromatic[color])
+                // this.grid[i].setColor(this.colors.chromatic[color])
             }
         }
     }
