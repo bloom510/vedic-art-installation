@@ -1,6 +1,6 @@
 class Grid {
     constructor(width, height, modulus, context, color, num_table){
-        this.lacmodulus =  modulus;
+        this.modulus =  modulus;
         this.windowWidth = width;
         this.windowHeight = height;
         this.context = context;
