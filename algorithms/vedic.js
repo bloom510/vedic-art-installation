@@ -4,12 +4,15 @@ const Dictionary = require("tonal-dictionary");
 
 class Vedic {
   constructor(modulus, scale, key){
-    this.scale = Range.scale(
-     Dictionary
-    .scale(scale)
-    .map(Transpose.transpose(`${key}2`)), [`${key}2`, `${key}6`]
-    );
-    this.note_table = [];
+    if(scale && key){
+      this.scale = Range.scale(
+        Dictionary
+       .scale(scale)
+       .map(Transpose.transpose(`${key}2`)), [`${key}2`, `${key}6`]
+       );
+       this.note_table = [];
+    }
+
     this.num_table = [];
     this.populate(modulus);
     this.modulus = modulus;
@@ -18,27 +21,30 @@ class Vedic {
     let number;
     let note;
     let tmp = [];
+    console.log('crunching numbers...')
     for(let i = 1; i <= modulus; i++){
-      this.note_table[i - 1] = [];
+      if(this.note_table) this.note_table[i - 1] = [];
       for(let j = 1; j <= modulus; j++){
-    /*TODO: for numbers, subdivide nested arrays by the modulus*/
-    //1. Push numbers into a temporary array 
-    //2. If number is the last member of a given row,
-    //   push tmp to num_table and reset tmp to empty array
         if((1 + (i*j) - 1) % modulus === 0) {
+          if(this.note_table) {
             note = this.scale[(modulus - 1) % this.scale.length];
             this.note_table[i - 1].push(note);
+          }
          
             tmp.push(modulus)
             if(tmp.length === modulus){
               this.num_table.push(tmp)
               tmp = [];
             }
+
         } else {
           number = ((1 + (i*j) - 1) % modulus)
+          if(this.note_table)
+          {
           this.note_table[i - 1].push(
           this.scale[(number - 1) % this.scale.length]
           );
+          }
           tmp.push(number)
         }
       }
@@ -46,8 +52,8 @@ class Vedic {
   }
 }
 
-const vedic = new Vedic(500, 'chromatic', 'C');
-console.log(vedic.num_table)
+const vedic = new Vedic(1000);
+// console.log(vedic.num_table)
 
 module.exports = vedic;
 

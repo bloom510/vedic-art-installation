@@ -11,17 +11,18 @@ class Client {
         this.socket.on('connect', () => { //when a server connection is established
             this.socket.emit('ready', 'hello from the client side!')
             this.socket.on('ready', (data) => {
-                
-                // console.log(data)
                 //Generate a table
-                const grid = new Grid(
+                new Grid(
                     this.canvas.width, 
                     this.canvas.height, 
                     data.modulus, 
                     this.canvas.context,
-                    'purple',
-                    data.num_table
+                    'black',
+                    data.num_table,
+                    this
                 );
+                
+                
                 // new Sequence(data, grid)
             });
         });
@@ -32,12 +33,9 @@ class Client {
 window.addEventListener('load', () => {
     const canvas = new Canvas(window.innerWidth, window.innerHeight);
     canvas.init({
-            strokeStyle: 'black',
+            strokeStyle: 'blue',
             fillStyle: 'white',
             lineCap: 'round',
-            lineWidth: '0.6'
-        }); 
-    
-    const client = new Client(canvas); 
-    
+            lineWidth: '1'
+        });  
 })
