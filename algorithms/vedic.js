@@ -52,7 +52,7 @@ class Vedic {
   }
 }
 
-const vedic = new Vedic(1000);
+const vedic = new Vedic(500);
 // console.log(vedic.num_table)
 
 module.exports = vedic;

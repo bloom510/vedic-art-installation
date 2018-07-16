@@ -43,17 +43,6 @@ class Grid {
         
     }
     makeVectorGrid(){
-        /*
-        Emit fundamental datasets to Socket.io 
-        and make a new Vector on the server
-
-        Data needed:
-        width, height, modulus, color,
-        digital root, radius 
-
-        re-assign context on the way back
-
-        */
         const width = this.width;
         const height =  this.height;
         let index = 0;
@@ -112,41 +101,37 @@ class Grid {
         let reverse = false;
         const draw = () => {
             requestAnimationFrame(() => {
-                    // uncomment to animate particle system
-                    this.context.fillStyle = 'rgba(255,155,255,0.01)';
-                    this.context.fillRect(0,0,this.width,this.height)
-                   
-                    // this.context.fillStyle = 'white';
+                    // uncomment to animate particle system                   
+                    // this.context.fillStyle = 'rgba(255,255,255,.01)';
+                    // this.context.fillRect(0,0,this.width,this.height)
                     this.highlightNumber(this.grid[index].dr);
-            
-            
+
                 // index <= this.modulus - 1 whole square
                 // index % this.modulus === 0 single row
                 if(index === 0){
+                    this.context.clearRect(0,0,this.width,this.height)
                     reverse = false;
                 }
+                if(index === this.modulus - 1){
+                    this.context.clearRect(0,0,this.width,this.height)
+                    reverse = true;
+                }  
+
                 if(!reverse){
                     if(index < this.modulus - 1){
-                        // this.context.fillStyle = 'black';
-                    // this.context.fillRect(0,0,this.width,this.height)
-                    
                         draw();
                         index++;
                     } 
                 } 
 
                 if(reverse) {
-                    // index = 0;
+                    // this.context.fillStyle = 'white';
+                    // this.context.fillRect(0,0,this.width,this.height)
                     draw();
                     index--;
                 }
            
-                if(index === this.modulus - 1){
-                    this.context.fillStyle = 'white';
-                    this.context.fillRect(0,0,this.width,this.height)
-                    // this.context.fillStyle = 'purple';
-                    reverse = true;
-                }   
+               
             });
         }
         draw();
@@ -186,14 +171,9 @@ class Grid {
     //Store number as state in a hash? So we can deselect previous?
         for(let i = 0; i < this.grid.length - this.modulus; i++){
             if(this.grid[i].dr === number){
-                color = (this.grid[i].dr % 11);
-                color = this.colors.chromatic[color];
-                this.context.fillStyle = color;
-                this.grid[i].setColor(color)
-                // this.context.moveTo(this.grid[i].x, this.grid[i].y)
-                // this.context.lineTo(this.grid[i].x, this.grid[i].y)
-                // this.context.stroke();
-                // this.grid[i].draw()
+                // color = (this.grid[i].dr % 11);
+                // color = this.colors.chromatic[color];
+                this.grid[i].draw()
                
                 // this.grid[i].setColor('')
                 // this.grid[i].setColor(this.colors.chromatic[color])
