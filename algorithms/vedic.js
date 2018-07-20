@@ -21,7 +21,7 @@ class Vedic {
     let number;
     let note;
     let tmp = [];
-    console.log('crunching numbers...')
+  
     for(let i = 1; i <= modulus; i++){
       if(this.note_table) this.note_table[i - 1] = [];
       for(let j = 1; j <= modulus; j++){
@@ -39,11 +39,10 @@ class Vedic {
 
         } else {
           number = ((1 + (i*j) - 1) % modulus)
-          if(this.note_table)
-          {
-          this.note_table[i - 1].push(
-          this.scale[(number - 1) % this.scale.length]
-          );
+          if(this.note_table){
+            this.note_table[i - 1].push(
+            this.scale[(number - 1) % this.scale.length]
+            );
           }
           tmp.push(number)
         }

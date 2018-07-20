@@ -2,12 +2,13 @@ class Vector {
     constructor(x, y, 
         width, height, 
         modulus, context,
-        color, dr, radius){
+        color, dr, radius, hiddenContext){
         this.x = x;
         this.y = y;
         this.dr = dr;
         this.radius = radius;
         this.context = context;
+        this.hiddenContext = hiddenContext;
         this.neighbors = {};
         this.setColor(color)
         // this.draw()
@@ -19,12 +20,12 @@ class Vector {
         this.draw();
     }
     draw(){
-        this.context.moveTo(this.x, this.y)
-        this.context.beginPath();
-        // this.context.moveTo(this.x,this.y)
-        // this.context.lineTo(this.x + 1,this.y + 1 )
-        this.context.arc(this.x,this.y,this.radius,1,2*Math.PI);
-        this.context.stroke();
-        this.context.closePath();
+        this.hiddenContext.moveTo(this.x, this.y)
+        this.hiddenContext.beginPath();
+        this.hiddenContext.arc(this.x,this.y,this.radius,1,2*Math.PI);
+        this.hiddenContext.stroke();
+        this.hiddenContext.closePath();
+
     }
+    
 }

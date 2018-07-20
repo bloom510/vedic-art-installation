@@ -19,10 +19,11 @@ class Client {
                     this.canvas.context,
                     'black',
                     data.num_table,
-                    this
+                    this,
+                    this.canvas.hiddenContext
                 );
                 
-                
+            
                 // new Sequence(data, grid)
             });
         });
@@ -33,7 +34,7 @@ class Client {
 window.addEventListener('load', () => {
     const canvas = new Canvas(window.innerWidth, window.innerHeight);
     canvas.init({
-            strokeStyle: 'blue',
+            strokeStyle: 'black',
             fillStyle: 'white',
             lineCap: 'round',
             lineWidth: '1'
