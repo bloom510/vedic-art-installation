@@ -74,16 +74,14 @@ class Grid {
         const draw = () => {
             requestAnimationFrame(() => {
                 this.hiddenContext.fill();
-                this.highlightNumber(this.grid[index].dr);
+                this.highlightNumber(this.grid[index].dr, reverse);
                 
                 // index <= this.modulus - 1 whole square
                 // index % this.modulus === 0 single row
                 if(index === 0){
-                    this.hiddenContext.fillRect(0,0,this.width,this.height)
                     reverse = false;
                 }
                 if(index === this.modulus - 1){
-                    this.hiddenContext.fillRect(0,0,this.width,this.height)
                     reverse = true;
                 }  
 
@@ -138,9 +136,19 @@ class Grid {
     //     } 
     // }
 
-    highlightNumber(number){
+    highlightNumber(number, hide){
+        
         this.grid.filter((i, n) => {
-            if(i.dr === number) this.grid[n].draw() 
+            if(i.dr === number) {
+                
+                !hide ?  i.setColor('black'): i.setColor('white')
+
+               
+                   
+                 
+
+                
+            } 
         })
 
     }

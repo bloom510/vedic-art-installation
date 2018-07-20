@@ -16,14 +16,14 @@ class Vector {
     }
 
     setColor(color){
-        this.context.fillStyle = color;
+        this.hiddenContext.fillStyle = color;
         this.draw();
     }
     draw(){
         this.hiddenContext.moveTo(this.x, this.y)
         this.hiddenContext.beginPath();
         this.hiddenContext.arc(this.x,this.y,this.radius,1,2*Math.PI);
-        this.hiddenContext.stroke();
+        this.hiddenContext.fill();
         this.hiddenContext.closePath();
 
     }
