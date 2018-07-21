@@ -12,9 +12,6 @@
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
-    "socket.io": "^2.1.1",
-    "tonal-dictionary": "^1.1.2",
-    "tonal-range": "^1.1.2",
-    "tonal-transpose": "^0.69.7"
+    "socket.io": "^2.1.1"
   }
 }

@@ -10,7 +10,6 @@ class Canvas {
     }
 
     init(params){
-        //Create a canvas
         const canvas = document.createElement('canvas');
         canvas.id = 'canvas';
         canvas.width = this.width;
@@ -38,9 +37,8 @@ class Canvas {
         this.hiddenContext.fillStyle = params.fillStyle;
         this.hiddenContext.lineCap = params.lineCap;
         this.hiddenContext.lineWidth = params.lineWidth;
-        
 
-        //Fill background and track mouse
+        //Fill background
         this.context.fillRect(0, 0, this.width, this.height);
         
     }

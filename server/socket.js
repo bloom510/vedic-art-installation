@@ -8,20 +8,21 @@ class Socket {
         this.io = require('socket.io')(this.server) 
         this.init(PORT)
     }
+
     init(PORT){
         this.server.listen(PORT, () => {
             console.log(`app listening on port ${PORT}`)
             this.activateListeners()
         })
     }
+    
     activateListeners(){
         this.io.on('connection', (socket) => { 
-            //add custom events here!
             socket.on('ready', (data) => {
                 socket.emit('ready', vedic)
-            })
+            });
+
             socket.on('incoming', (data) => {
-                // console.log(data)
                 let grid = [];
                 let vector;
                 let index = 0;
@@ -42,6 +43,7 @@ class Socket {
                         }
                     }
                 }
+
                 const plotVectors = () => {
                     let stepX = (data.width / data.modulus);
                     let stepY = (data.height / data.modulus);
@@ -58,10 +60,8 @@ class Socket {
 
                 makeVectors()
                 plotVectors()
-                console.log('sending to client')
 
                 socket.emit('vectors', grid);
-                // console.log(grid)s
             })
         })
     }

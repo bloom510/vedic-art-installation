@@ -7,11 +7,9 @@ class Client {
     }
 
     activateListeners(){
-        //add custom events here!
-        this.socket.on('connect', () => { //when a server connection is established
+        this.socket.on('connect', () => { 
             this.socket.emit('ready', 'hello from the client side!')
             this.socket.on('ready', (data) => {
-                //Generate a table
                 new Grid(
                     this.canvas.width, 
                     this.canvas.height, 
@@ -22,9 +20,6 @@ class Client {
                     this,
                     this.canvas.hiddenContext
                 );
-                
-            
-                // new Sequence(data, grid)
             });
         });
     }

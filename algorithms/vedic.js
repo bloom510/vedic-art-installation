@@ -1,36 +1,17 @@
-const Range = require("tonal-range")
-const Transpose = require("tonal-transpose")
-const Dictionary = require("tonal-dictionary");
 
 class Vedic {
   constructor(modulus, scale, key){
-    if(scale && key){
-      this.scale = Range.scale(
-        Dictionary
-       .scale(scale)
-       .map(Transpose.transpose(`${key}2`)), [`${key}2`, `${key}6`]
-       );
-       this.note_table = [];
-    }
-
     this.num_table = [];
     this.populate(modulus);
     this.modulus = modulus;
   }
   populate(modulus){
     let number;
-    let note;
     let tmp = [];
   
     for(let i = 1; i <= modulus; i++){
-      if(this.note_table) this.note_table[i - 1] = [];
       for(let j = 1; j <= modulus; j++){
-        if((1 + (i*j) - 1) % modulus === 0) {
-          if(this.note_table) {
-            note = this.scale[(modulus - 1) % this.scale.length];
-            this.note_table[i - 1].push(note);
-          }
-         
+        if((i*j) % modulus === 0) {   
             tmp.push(modulus)
             if(tmp.length === modulus){
               this.num_table.push(tmp)
@@ -38,12 +19,7 @@ class Vedic {
             }
 
         } else {
-          number = ((1 + (i*j) - 1) % modulus)
-          if(this.note_table){
-            this.note_table[i - 1].push(
-            this.scale[(number - 1) % this.scale.length]
-            );
-          }
+          number = (i*j) % modulus;
           tmp.push(number)
         }
       }
@@ -52,7 +28,6 @@ class Vedic {
 }
 
 const vedic = new Vedic(500);
-// console.log(vedic.num_table)
 
 module.exports = vedic;
 

@@ -10,6 +10,7 @@ class Grid {
 
         this.modulus =  modulus;
         this.grid = [];
+        
         this.num_table = num_table;
 
         // this.activateListeners();
@@ -73,14 +74,16 @@ class Grid {
         let reverse = false;
         const draw = () => {
             requestAnimationFrame(() => {
-                this.hiddenContext.fill();
+                // this.hiddenContext.fill();
                 this.highlightNumber(this.grid[index].dr, reverse);
                 
-                // index <= this.modulus - 1 whole square
-                // index % this.modulus === 0 single row
+                // whole square: index <= this.modulus - 1 
+                // single row: index % this.modulus === 0 
+
                 if(index === 0){
                     reverse = false;
                 }
+                
                 if(index === this.modulus - 1){
                     reverse = true;
                 }  
@@ -96,17 +99,11 @@ class Grid {
                     draw();
                     index--;
                 }
-                // this.context.drawImage(document.getElementById('hiddenCanvas'), 0, 0);
-                 // cut the drawn rectangle
-                 var image = this.hiddenContext.getImageData(0,0,this.width,this.height); 
-                 // copy into visual canvas at different position
+                 let image = this.hiddenContext.getImageData(0,0,this.width,this.height); 
                  this.context.putImageData(image, 0, 0);
-                 
-               
             });
         }
         draw();
-         
     }
 
 
@@ -137,17 +134,9 @@ class Grid {
     // }
 
     highlightNumber(number, hide){
-        
         this.grid.filter((i, n) => {
             if(i.dr === number) {
-                
-                !hide ?  i.setColor('black'): i.setColor('white')
-
-               
-                   
-                 
-
-                
+                !hide ? i.setColor('black'): i.setColor('white');  
             } 
         })
 
