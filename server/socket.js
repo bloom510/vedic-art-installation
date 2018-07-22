@@ -1,11 +1,14 @@
 
 //make sure to require any app business logic
 const vedic = require('../algorithms/vedic');
+const Vector = require('./vector')
 
 class Socket {
-    constructor(app, PORT){
+    constructor(app, PORT, canvas){
         this.server = require('http').createServer(app); 
         this.io = require('socket.io')(this.server) 
+        this.canvas = canvas;
+        this.grid = [];
         this.init(PORT)
     }
 
@@ -15,6 +18,22 @@ class Socket {
             this.activateListeners()
         })
     }
+        makeVectors(vedic){
+                    for(let i = 0; i < vedic.modulus; i++){
+                        for(let j = 0; j < vedic.modulus; j++){
+                            vector = new Vector(
+                                0, 0, 
+                                this.canvas.context, 
+                                'purple', 
+                                vedic.num_table[i][j],
+                                5
+                            )
+                            // console.log(vedic.num_table[i][j])
+                            grid.push(vector)
+                            console.log(this.grid)
+                        }
+                    }
+                }
     
     activateListeners(){
         this.io.on('connection', (socket) => { 
@@ -22,48 +41,50 @@ class Socket {
                 socket.emit('ready', vedic)
             });
 
+            socket.on('stream', () => {
+                //Node canvas handleStream goes here
+            })
+
             socket.on('incoming', (data) => {
-                let grid = [];
-                let vector;
-                let index = 0;
-                
-                const makeVectors = () => {
-                    for(let i = 0; i < data.modulus; i++){
-                        for(let j = 0; j < data.modulus; j++){
-                            let vector = {
-                                x: 0, y: 0, 
-                                width: data.width, height:data.height, 
-                                modulus: data.modulus, 
-                                context: data.context, 
-                                color: data.color,
-                                dr: data.num_table[i][j],
-                                radius: data.radius
-                            }
-                            grid.push(vector)
-                        }
-                    }
-                }
-
-                const plotVectors = () => {
-                    let stepX = (data.width / data.modulus);
-                    let stepY = (data.height / data.modulus);
-                    for(let x = 0; x <= data.width; x += stepX){               
-                        for(let y = 0; y <= data.height; y += stepY){
-                            if(index <= grid.length - 1){
-                                grid[index].x = x;
-                                grid[index].y = y;
-                                index++;
-                            }     
-                        }   
-                    }
-                }
-
-                makeVectors()
-                plotVectors()
-
-                socket.emit('vectors', grid);
+              
+            this.makeVectors(vedic)
+            this.plotVectors(data, vedic)
+            // draw() recursive / highlightNumber
+            
+            // socket.emit('vectors', grid);
             })
         })
+    }
+    makeVectors(vedic){
+        let vector;
+        
+        for(let i = 0; i < vedic.modulus; i++){
+            for(let j = 0; j < vedic.modulus; j++){
+                vector = new Vector(
+                    0, 0, 
+                    this.canvas.context, 
+                    'purple', 
+                    vedic.num_table[i][j],
+                    5
+                )
+                // console.log(vedic.num_table[i][j])
+                this.grid.push(vector)
+            }
+        }
+    }
+    plotVectors(data, vedic){
+        let index = 0;
+        let stepX = (data.width / vedic.modulus);
+        let stepY = (data.height / vedic.modulus);
+        for(let x = 0; x <= data.width; x += stepX){               
+            for(let y = 0; y <= data.height; y += stepY){
+                if(index <= this.grid.length - 1){
+                    this.grid[index].x = x;
+                    this.grid[index].y = y;
+                    index++;
+                }     
+            }   
+        }
     }
 
 }

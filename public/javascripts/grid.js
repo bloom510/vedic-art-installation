@@ -97,8 +97,17 @@ class Grid {
         draw();
     }
 
+    highlightNumber(number, hide){
+        this.grid.filter((i, n) => {
+            if(i.dr === number) {
+                !hide ? i.setColor('black'): i.setColor('white');  
+            } 
+        })
 
-    // findNeighbors(){
+    }
+}
+
+// findNeighbors(){
     //    for(let i = 0; i < this.grid.length; i++){
     //         if(i === 0){
     //             this.grid[i].neighbors.right = this.grid[i + 1];
@@ -123,13 +132,3 @@ class Grid {
     //         right.setColor('purple')    
     //     } 
     // }
-
-    highlightNumber(number, hide){
-        this.grid.filter((i, n) => {
-            if(i.dr === number) {
-                !hide ? i.setColor('black'): i.setColor('white');  
-            } 
-        })
-
-    }
-}

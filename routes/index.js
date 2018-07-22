@@ -1,5 +1,7 @@
+const fs = require('fs')
 const express = require('express');
 const router = express.Router();
+
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -20,4 +22,23 @@ router.get('/', (req, res, next) => {
   }); 
 });
 
+router.get('/show', function (req, res, next) {
+  res.render('index', { 
+    title: 'Express', scripts: 
+      [
+        //Socket.io 
+        {script: '/socket.io/socket.io.js'},
+        {script: '../javascripts/node-client.js'},
+      ]
+  });
+});
+
 module.exports = router;
+
+// res.setHeader('Content-Type', 'image/png');
+// const out = fs.createWriteStream(__dirname + '/state.png')
+
+// let stream = NodeCanvas.canvas.pngStream().pipe(res);
+// stream.on('data', (chunk) => {
+//   out.write(chunk);
+// });

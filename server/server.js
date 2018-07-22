@@ -1,12 +1,13 @@
 
 const express = require('express');
 const Socket = require('./socket.js')
+const canvas = require('../server/node-c')
 
 class Server{
   constructor(){
     this.app = express();
     this.PORT = process.env.PORT || 8080;
-    this.socket = new Socket(this.app, this.PORT)
+    this.socket = new Socket(this.app, this.PORT, canvas)
     this.setup(this.app)
   }
   setup(app){

@@ -4,6 +4,7 @@
     of the Canvas API. Data will be streamed to the client.
 */
 const Canvas = require('canvas-prebuilt')
+const fs = require('fs')
 
 class NodeCanvas{
     constructor(width, height){
@@ -15,10 +16,15 @@ class NodeCanvas{
             width: 550,
             height: 400,
             strokeStyle: 'black',
-            fillStyle: 'purple',
+            fillStyle: 'pink',
             lineCap: 'round',
             lineWidth: 2
         })
+        setInterval(() => {
+            this.context.fillStyle = `rgb(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)})`     
+            this.context.fillRect(0, 0, this.width, this.height);
+            this.context.fill();
+        }, 1000)
 
     }
     init(params){
@@ -28,11 +34,11 @@ class NodeCanvas{
         this.context.fillStyle = params.fillStyle;
         this.context.lineCap = params.lineCap;
         this.context.lineWidth = params.lineWidth;
-        this.context.fillRect(0, 0, this.width, this.height);
-        this.context.fill();
-        console.log(this.canvas.toDataURL())
+
+        
+        // console.log(this.canvas.toDataURL())
 
     }
 }
 
-console.log(new NodeCanvas(550, 400))
+module.exports = new NodeCanvas(550, 400);
