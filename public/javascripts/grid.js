@@ -24,16 +24,6 @@ class Grid {
         let index = 0;
         let vector;
 
-        // this.client.socket.emit('incoming', {
-        //     width, height, 
-        //     modulus: this.modulus, 
-        //     context: undefined,
-        //     color: 'black',
-        //     num_table: this.num_table,
-        //     radius: 1
-        // })
-        
-        
         const makeVectors = () => {
             for(let i = 0; i < this.modulus; i++){
                 for(let j = 0; j < this.modulus; j++){
@@ -73,6 +63,8 @@ class Grid {
         let index = 0;
         let reverse = false;
         const draw = () => {
+            let image = this.hiddenContext.getImageData(0,0,this.width,this.height); 
+            this.context.putImageData(image, 0, 0);
             requestAnimationFrame(() => {
                 // this.hiddenContext.fill();
                 this.highlightNumber(this.grid[index].dr, reverse);
@@ -99,8 +91,7 @@ class Grid {
                     draw();
                     index--;
                 }
-                 let image = this.hiddenContext.getImageData(0,0,this.width,this.height); 
-                 this.context.putImageData(image, 0, 0);
+                 
             });
         }
         draw();
@@ -141,28 +132,4 @@ class Grid {
         })
 
     }
-
-    activateListeners(){
-        this.client.socket.on('vectors', (data) => {
-            console.log('client recieved vector data')
-            let new_vector;
-            data.forEach((vector) => {
-                new_vector = new Vector(
-                    vector.x, vector.y, 
-                    vector.width, vector.height, 
-                    vector.modulus, this.context, 
-                    vector.color,
-                    vector.dr,
-                    vector.radius,
-                    this.hiddenContext
-                   );
-               
-               this.grid.push(new_vector) 
-            })
-          
-            this.drawGrid();
-
-        })
-    }
-
 }

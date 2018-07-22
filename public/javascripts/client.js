@@ -27,6 +27,7 @@ class Client {
 }
 
 window.addEventListener('load', () => {
+
     const canvas = new Canvas(window.innerWidth, window.innerHeight);
     canvas.init({
             strokeStyle: 'black',
@@ -34,4 +35,6 @@ window.addEventListener('load', () => {
             lineCap: 'round',
             lineWidth: '1'
         });  
+        
+
 })
