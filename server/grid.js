@@ -48,8 +48,8 @@ module.exports = class Grid {
         const plotVectors = () => {
             let stepX = (this.width / this.modulus);
             let stepY = (this.height / this.modulus);
-            for(let x = 30; x <= this.width; x += stepX){               
-                for(let y = 30; y <= this.height; y += stepY){
+            for(let x = 0; x <= this.width; x += stepX){               
+                for(let y = 0; y <= this.height; y += stepY){
                     if(index <= this.grid.length - 1){
                         this.grid[index].x = Math.floor(x);
                         this.grid[index].y = Math.floor(y);
@@ -69,7 +69,7 @@ module.exports = class Grid {
         let reverse = false;
         const draw = () => {
 
-            setTimeout(() => {
+            setInterval(() => {
         
         //Set up write stream to filesystem
         // const out = fs.createWriteStream(__dirname + `/${index}.png`)
@@ -112,7 +112,7 @@ module.exports = class Grid {
                 }
                  
             }
-            , 1);
+            , 100);
         }
         draw();
         

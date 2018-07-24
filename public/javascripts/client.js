@@ -17,7 +17,6 @@ class Client {
                     this.canvas.context,
                     'black',
                     data.num_table,
-                    this,
                     this.canvas.hiddenContext
                 );
             });

@@ -5,7 +5,7 @@ class Canvas {
         this.width = width;
         this.height = height;
         this.context, this.hiddenContext, this.namespace;
-        // this.client = new Client(this)
+        this.client = new Client(this)
   
     }
 

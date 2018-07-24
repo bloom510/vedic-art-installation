@@ -1,12 +1,12 @@
 class Grid {
-    constructor(width, height, modulus, context, color, num_table){
+    constructor(width, height, modulus, context, color, num_table, hiddenContext){
         this.width = width;
         this.height = height;
         this.context = context;
         this.context.strokeStyle = color;
         this.hiddenContext = hiddenContext;
         this.context.fillStyle = 'black';
-
+console.log(this.hiddenContext)
         this.modulus =  modulus;
         this.grid = [];
         
