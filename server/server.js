@@ -12,7 +12,6 @@ class Server{
   setup(app){
     const path = require('path');
     const bodyParser = require("body-parser");
-    const cookieParser = require('cookie-parser');
    
     this.app.set('views', path.join(__dirname, '../views'));
     this.app.set('view engine', 'hbs');

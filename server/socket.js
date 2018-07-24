@@ -1,6 +1,7 @@
 
 //make sure to require any app business logic
 const vedic = require('../algorithms/vedic');
+const Vector = require('./vector')
 
 class Socket {
     constructor(app, PORT, canvas){
@@ -36,22 +37,20 @@ class Socket {
     
     activateListeners(){
         this.io.on('connection', (socket) => { 
+
             socket.on('ready', (data) => {
                 socket.emit('ready', vedic)
+                socket.emit('test', new Vector(
+                    50,50,'context', 'red', 9, 5)
+                )
+
             });
 
-            socket.on('stream', () => {
-                //Node canvas handleStream goes here
-            })
+            // this.io.on('incoming', (data) => {
+            //     this.makeVectors(vedic)
+            //     this.plotVectors(data, vedic)
 
-            socket.on('incoming', (data) => {
-              
-            this.makeVectors(vedic)
-            this.plotVectors(data, vedic)
-            // draw() recursive / highlightNumber
-            
-            // socket.emit('vectors', grid);
-            })
+            // })
         })
     }
     makeVectors(vedic){
@@ -66,7 +65,6 @@ class Socket {
                     vedic.num_table[i][j],
                     5
                 )
-                // console.log(vedic.num_table[i][j])
                 this.grid.push(vector)
             }
         }
@@ -84,6 +82,7 @@ class Socket {
                 }     
             }   
         }
+
     }
 
 }

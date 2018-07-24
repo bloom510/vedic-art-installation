@@ -21,7 +21,11 @@ class Client {
                     this.canvas.hiddenContext
                 );
             });
+            this.socket.on('test', (data) => {
+                console.log(data)
+            })
         });
+        
     }
 
 }
