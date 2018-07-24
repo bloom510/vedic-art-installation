@@ -1,7 +1,6 @@
 
 //make sure to require any app business logic
 const vedic = require('../algorithms/vedic');
-const Vector = require('./vector')
 
 class Socket {
     constructor(app, PORT, canvas){

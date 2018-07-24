@@ -1,3 +1,4 @@
+//Consumes data emitted from the server and makes a grid of vectors
 class Grid {
     constructor(width, height, modulus, context, color, num_table, client, hiddenContext){
         this.width = width;
@@ -13,7 +14,6 @@ class Grid {
         
         this.num_table = num_table;
 
-        // this.activateListeners();
         this.makeVectorGrid();
         this.drawGrid();
         
@@ -66,7 +66,6 @@ class Grid {
             let image = this.hiddenContext.getImageData(0,0,this.width,this.height); 
             this.context.putImageData(image, 0, 0);
             requestAnimationFrame(() => {
-                // this.hiddenContext.fill();
                 this.highlightNumber(this.grid[index].dr, reverse);
                 
                 // whole square: index <= this.modulus - 1 
@@ -106,29 +105,3 @@ class Grid {
 
     }
 }
-
-// findNeighbors(){
-    //    for(let i = 0; i < this.grid.length; i++){
-    //         if(i === 0){
-    //             this.grid[i].neighbors.right = this.grid[i + 1];
-    //         } else if(i === this.grid.length - 1){
-    //             this.grid[i].neighbors.left = this.grid[i - 1];
-    //         } else {
-    //             this.grid[i].neighbors.left = this.grid[i - 1];
-    //             this.grid[i].neighbors.right = this.grid[i + 1];
-    //         }
-    //    }
-   
-    // }
-
-    // drawNeighbor(vector){
-    //     vector.setColor('red')
-    //     if(vector.neighbors.left) {
-    //         let left = vector.neighbors.left;
-    //         left.setColor('purple');
-    //     }
-    //     if(vector.neighbors.right){
-    //         let right = vector.neighbors.right;
-    //         right.setColor('purple')    
-    //     } 
-    // }

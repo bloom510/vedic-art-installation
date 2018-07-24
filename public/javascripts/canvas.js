@@ -1,4 +1,4 @@
-
+//Canvas instantiated in client.js
 class Canvas {
     constructor(width, height) {
         this.global = {}; 

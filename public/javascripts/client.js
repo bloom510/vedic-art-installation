@@ -1,4 +1,4 @@
-
+//Responds to Socket.io server event emissions
 class Client {
     constructor(canvas){
         this.socket = io.connect(window.location.host);

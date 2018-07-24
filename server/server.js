@@ -1,13 +1,12 @@
 
 const express = require('express');
 const Socket = require('./socket.js')
-const canvas = require('../server/node-c')
 
 class Server{
   constructor(){
     this.app = express();
     this.PORT = process.env.PORT || 8080;
-    this.socket = new Socket(this.app, this.PORT, canvas)
+    this.socket = new Socket(this.app, this.PORT)
     this.setup(this.app)
   }
   setup(app){
@@ -18,11 +17,8 @@ class Server{
     this.app.set('views', path.join(__dirname, '../views'));
     this.app.set('view engine', 'hbs');
 
-    const logger = require('morgan');
-    this.app.use(logger('dev'));
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
-    this.app.use(cookieParser());
     this.app.use(express.static(path.join(__dirname, '../public')));
     this.app.use(bodyParser.urlencoded({ extended: true }));
 

@@ -1,4 +1,4 @@
-
+//The secret sauce minus the musical sequences
 class Vedic {
   constructor(modulus, scale, key){
     this.num_table = [];
@@ -27,7 +27,7 @@ class Vedic {
   }
 }
 
-const vedic = new Vedic(9);
+const vedic = new Vedic(500);
 
 module.exports = vedic;
 
