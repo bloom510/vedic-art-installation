@@ -12,19 +12,17 @@ class NodeCanvas{
         this.width = width;
         this.height = height;
         this.context;
+         
+
         this.init({
-            width: 550,
-            height: 400,
+            width: width,
+            height: height,
             strokeStyle: 'black',
             fillStyle: 'pink',
             lineCap: 'round',
             lineWidth: 2
         })
-        setInterval(() => {
-            this.context.fillStyle = `rgb(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)})`     
-            this.context.fillRect(0, 0, this.width, this.height);
-            this.context.fill();
-        }, 1000)
+ 
 
     }
     init(params){
@@ -35,10 +33,12 @@ class NodeCanvas{
         this.context.lineCap = params.lineCap;
         this.context.lineWidth = params.lineWidth;
 
-        
+        this.context.fillRect(0, 0, this.width, this.height);
+        this.context.fill();
+
         // console.log(this.canvas.toDataURL())
 
     }
 }
 
-module.exports = new NodeCanvas(550, 400);
+module.exports = NodeCanvas;

@@ -1,13 +1,12 @@
 
 const express = require('express');
 const Socket = require('./socket.js')
-const canvas = require('../server/node-c')
 
 class Server{
   constructor(){
     this.app = express();
     this.PORT = process.env.PORT || 8080;
-    this.socket = new Socket(this.app, this.PORT, canvas)
+    this.socket = new Socket(this.app, this.PORT)
     this.setup(this.app)
   }
   setup(app){
@@ -28,6 +27,7 @@ class Server{
 
     const indexRouter = require('../routes/index');
     this.app.use('/', indexRouter);
+    
   }
 }
 

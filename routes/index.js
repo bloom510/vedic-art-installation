@@ -2,7 +2,6 @@ const fs = require('fs')
 const express = require('express');
 const router = express.Router();
 
-
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.render('index', { 
@@ -26,11 +25,14 @@ router.get('/show', function (req, res, next) {
   res.render('index', { 
     title: 'Express', scripts: 
       [
-        //Socket.io 
         {script: '/socket.io/socket.io.js'},
         {script: '../javascripts/node-client.js'},
+        {script: '../javascripts/canvas.js'},
       ]
   });
+  // res.setHeader('Content-Type', 'image/png');
+  // let stream = this.canvas.canvas.createPNGStream();
+  // stream.pipe(res)
 });
 
 module.exports = router;
@@ -38,7 +40,7 @@ module.exports = router;
 // res.setHeader('Content-Type', 'image/png');
 // const out = fs.createWriteStream(__dirname + '/state.png')
 
-// let stream = NodeCanvas.canvas.pngStream().pipe(res);
+// let stream = NodeCanvas.canvas.pngStream().pipe(out);
 // stream.on('data', (chunk) => {
 //   out.write(chunk);
 // });

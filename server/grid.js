@@ -1,20 +1,26 @@
-class Grid {
-    constructor(width, height, modulus, context, color, num_table){
+const Vector = require('./vector')
+const fs = require('fs')
+const axios = require('axios')
+
+module.exports = class Grid {
+    constructor(width, height, modulus, context, color, num_table, canvas, socket){
         this.width = width;
         this.height = height;
+        this.canvas = canvas;
         this.context = context;
         this.context.strokeStyle = color;
-        this.hiddenContext = hiddenContext;
         this.context.fillStyle = 'black';
+        this.socket = socket;
 
         this.modulus =  modulus;
         this.grid = [];
+        console.log('mod', this.modulus)
         
         this.num_table = num_table;
 
-        // this.activateListeners();
         this.makeVectorGrid();
         this.drawGrid();
+
         
     }
     makeVectorGrid(){
@@ -28,14 +34,13 @@ class Grid {
                 for(let j = 0; j < this.modulus; j++){
                     vector = new Vector(
                         0, 0, 
-                        this.width, this.height, 
-                        this.modulus, this.context, 
+                        this.context, 
                         'purple',
                         this.num_table[i][j],
-                        1,
-                        this.hiddenContext
+                        4
                     );
                     this.grid.push(vector)
+                    // console.log(this.grid.length)
                 }
             }
         }
@@ -43,8 +48,8 @@ class Grid {
         const plotVectors = () => {
             let stepX = (this.width / this.modulus);
             let stepY = (this.height / this.modulus);
-            for(let x = 0; x <= this.width; x += stepX){               
-                for(let y = 0; y <= this.height; y += stepY){
+            for(let x = 30; x <= this.width; x += stepX){               
+                for(let y = 30; y <= this.height; y += stepY){
                     if(index <= this.grid.length - 1){
                         this.grid[index].x = Math.floor(x);
                         this.grid[index].y = Math.floor(y);
@@ -59,14 +64,28 @@ class Grid {
 
  
     drawGrid(){
+
         let index = 0;
         let reverse = false;
         const draw = () => {
-            let image = this.hiddenContext.getImageData(0,0,this.width,this.height); 
-            this.context.putImageData(image, 0, 0);
-            requestAnimationFrame(() => {
-                // this.hiddenContext.fill();
-                this.highlightNumber(this.grid[index].dr, reverse);
+
+            setTimeout(() => {
+        
+        //Set up write stream to filesystem
+        // const out = fs.createWriteStream(__dirname + `/${index}.png`)
+        //Stream data 
+        // let stream = this.canvas.canvas.pngStream().pipe(out);
+        //On data, write chunk to the filesystem
+        // stream.on('data', (chunk) => {
+            // console.log(chunk)
+        //   out.write(chunk);
+            //  data += chunk;
+        // });
+          let dataUrl = this.canvas.canvas.toDataURL();
+          this.socket.io.emit('img-data', dataUrl)
+        
+     
+        this.highlightNumber(this.grid[index].dr, reverse);
                 
                 // whole square: index <= this.modulus - 1 
                 // single row: index % this.modulus === 0 
@@ -77,6 +96,7 @@ class Grid {
                 
                 if(index === this.modulus - 1){
                     reverse = true;
+                    
                 }  
 
                 if(!reverse){
@@ -91,43 +111,41 @@ class Grid {
                     index--;
                 }
                  
-            });
+            }
+            , 100);
         }
         draw();
+        
     }
 
     highlightNumber(number, hide){
         this.grid.filter((i, n) => {
             if(i.dr === number) {
-                !hide ? i.setColor('black'): i.setColor('white');  
+                !hide ? i.setColor('black'): i.setColor('white');
+
+
+
+
+                // let encodedCanvas = this.canvas.canvas.toDataURL()
+                            // .replace(/^data:image\/(png|jpg);base64,/, "");
+                
+                // this.socket.io.emit('img-data', encodedCanvas)
+
+                // const byteCharacters = atob(encodedCanvas);
+                // let byteNumbers = new Array(byteCharacters.length);
+
+                // for (var i = 0; i < byteCharacters.length; i++) {
+                //     byteNumbers[i] = byteCharacters.charCodeAt(i);
+                // }
+                
+                // let byteArray = new Uint8Array(byteNumbers);
+
+                
+                // console.log(byteArray)
+                
+           
             } 
         })
 
     }
 }
-
-// findNeighbors(){
-    //    for(let i = 0; i < this.grid.length; i++){
-    //         if(i === 0){
-    //             this.grid[i].neighbors.right = this.grid[i + 1];
-    //         } else if(i === this.grid.length - 1){
-    //             this.grid[i].neighbors.left = this.grid[i - 1];
-    //         } else {
-    //             this.grid[i].neighbors.left = this.grid[i - 1];
-    //             this.grid[i].neighbors.right = this.grid[i + 1];
-    //         }
-    //    }
-   
-    // }
-
-    // drawNeighbor(vector){
-    //     vector.setColor('red')
-    //     if(vector.neighbors.left) {
-    //         let left = vector.neighbors.left;
-    //         left.setColor('purple');
-    //     }
-    //     if(vector.neighbors.right){
-    //         let right = vector.neighbors.right;
-    //         right.setColor('purple')    
-    //     } 
-    // }

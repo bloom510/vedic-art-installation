@@ -20,6 +20,7 @@ module.exports = class Vector {
         this.context.arc(this.x,this.y,this.radius,1,2*Math.PI);
         this.context.fill();
         this.context.closePath();
+        
 
     }
     

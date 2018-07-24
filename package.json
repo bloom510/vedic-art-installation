@@ -6,13 +6,20 @@
     "node": "8.9.4"
   },
   "dependencies": {
+    "atob": "^2.1.1",
+    "axios": "^0.18.0",
+    "b64-to-blob": "^1.2.19",
     "canvas-prebuilt": "^1.6.5-prerelease.1",
+    "canvas-to-blob": "0.0.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
+    "fetch": "^1.1.0",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
-    "socket.io": "^2.1.1"
+    "node-fetch": "^2.2.0",
+    "socket.io": "^2.1.1",
+    "socket.io-stream": "^0.9.1"
   }
 }
