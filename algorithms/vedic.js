@@ -27,7 +27,7 @@ class Vedic {
   }
 }
 
-const vedic = new Vedic(20);
+const vedic = new Vedic(9);
 
 module.exports = vedic;
 

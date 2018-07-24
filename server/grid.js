@@ -37,7 +37,7 @@ module.exports = class Grid {
                         this.context, 
                         'purple',
                         this.num_table[i][j],
-                        4
+                        1
                     );
                     this.grid.push(vector)
                     // console.log(this.grid.length)
@@ -112,7 +112,7 @@ module.exports = class Grid {
                 }
                  
             }
-            , 100);
+            , 1);
         }
         draw();
         
@@ -122,9 +122,6 @@ module.exports = class Grid {
         this.grid.filter((i, n) => {
             if(i.dr === number) {
                 !hide ? i.setColor('black'): i.setColor('white');
-
-
-
 
                 // let encodedCanvas = this.canvas.canvas.toDataURL()
                             // .replace(/^data:image\/(png|jpg);base64,/, "");

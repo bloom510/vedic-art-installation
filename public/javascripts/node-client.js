@@ -26,20 +26,10 @@ class Client {
                 //             .catch(e => console.log(e))
                 let img = new Image();
                 img.src = data;
-                this.canvas.context.drawImage(img, 0, 0)
+                img.onload = () => {
+                    this.canvas.context.drawImage(img, 0, 0)
+                }
 
-                // let blob = new Blob([data], {type: 'image/png'});
-                // let blobUrl = window.URL.createObjectURL(blob);
-                // let img = new Image();
-                // img.src = blobUrl;  
-                // document.body.appendChild(img)
-                // console.log(blob);
-
-                // this.canvas.context.drawImage(img, 0, 0);
-                // window.URL.revokeObjectURL(this.src);             // free memory held by Object URL
-   
-                // console.log(this.canvas)
-                // this.canvas.context.putImageData(blobUrl, 0, 0)
             });
             //Receive data
             
@@ -58,3 +48,17 @@ window.addEventListener('load', () => {
     }); 
     new Client(canvas)
 })
+
+
+                // let blob = new Blob([data], {type: 'image/png'});
+                // let blobUrl = window.URL.createObjectURL(blob);
+                // let img = new Image();
+                // img.src = blobUrl;  
+                // document.body.appendChild(img)
+                // console.log(blob);
+
+                // this.canvas.context.drawImage(img, 0, 0);
+                // window.URL.revokeObjectURL(this.src);             // free memory held by Object URL
+   
+                // console.log(this.canvas)
+                // this.canvas.context.putImageData(blobUrl, 0, 0)
