@@ -6,13 +6,13 @@
     "node": "8.9.4"
   },
   "dependencies": {
-    "canvas-prebuilt": "^1.6.5-prerelease.1",
+    "canvas-prebuilt": "^1.6.11",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
-    "morgan": "~1.9.0",
+    "morgan": "^1.9.1",
     "socket.io": "^2.1.1"
   }
 }

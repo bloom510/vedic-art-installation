@@ -1,7 +1,7 @@
 //Responds to Socket.io server event emissions
 class Client {
     constructor(canvas){
-        this.socket = io.connect('http://localhost:8080');
+        this.socket = io.connect(window.location.host);
         this.canvas = canvas;
         this.activateListeners()
     }
