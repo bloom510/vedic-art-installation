@@ -8,22 +8,17 @@ class Grid {
         this.hiddenContext = hiddenContext;
         this.context.fillStyle = 'black';
         this.client = client;
-
         this.modulus =  modulus;
         this.grid = [];
-        
         this.num_table = num_table;
-
         this.makeVectorGrid();
         this.drawGrid();
-        
     }
     makeVectorGrid(){
         const width = this.width;
         const height =  this.height;
         let index = 0;
         let vector;
-
         const makeVectors = () => {
             for(let i = 0; i < this.modulus; i++){
                 for(let j = 0; j < this.modulus; j++){
@@ -99,9 +94,8 @@ class Grid {
     highlightNumber(number, hide){
         this.grid.filter((i, n) => {
             if(i.dr === number) {
-                !hide ? i.setColor('black'): i.setColor('white');  
+                !hide ? i.setColor('black'): i.setColor('#ccc');  
             } 
         })
-
     }
 }

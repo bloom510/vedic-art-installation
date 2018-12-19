@@ -1,11 +1,10 @@
 //Responds to Socket.io server event emissions
 class Client {
     constructor(canvas){
-        this.socket = io.connect(window.location.host);
+        this.socket = io.connect('http://localhost:8080');
         this.canvas = canvas;
         this.activateListeners()
     }
-
     activateListeners(){
         this.socket.on('connect', () => { 
             this.socket.emit('ready', 'hello from the client side!')
@@ -25,13 +24,9 @@ class Client {
                 console.log(data)
             })
         });
-        
     }
-
 }
-
 window.addEventListener('load', () => {
-
     const canvas = new Canvas(window.innerWidth, window.innerHeight);
     canvas.init({
             strokeStyle: 'black',
@@ -39,6 +34,4 @@ window.addEventListener('load', () => {
             lineCap: 'round',
             lineWidth: '1'
         });  
-        
-
 })
